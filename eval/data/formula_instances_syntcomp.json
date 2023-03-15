@@ -1,0 +1,3467 @@
+[
+    {
+        "name": "PlugDeviceModel_b0840146",
+        "inputs": [],
+        "outputs": [],
+        "formula": "(1) -> ((true)&(true))"
+    },
+    {
+        "name": "ltl2dba_U11",
+        "inputs": [
+            "p_0"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((p_0) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba24",
+        "inputs": [
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (p)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "lilydemo08",
+        "inputs": [
+            "req"
+        ],
+        "outputs": [
+            "grant"
+        ],
+        "formula": "((G (F (req)))) -> ((G (F (grant))))"
+    },
+    {
+        "name": "example71",
+        "inputs": [
+            "r_0"
+        ],
+        "outputs": [
+            "g_0"
+        ],
+        "formula": "(1) -> ((true)&(G ((r_0) -> (g_0))))"
+    },
+    {
+        "name": "ltl2dba22",
+        "inputs": [
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (p)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_Q1",
+        "inputs": [
+            "p_0"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (p_0)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_E1",
+        "inputs": [
+            "p_0"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (p_0)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "detector1",
+        "inputs": [
+            "r_0"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G (F (r_0))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "example101",
+        "inputs": [
+            "r"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> ((X (X (G ((r) <-> (g)))))&(true))"
+    },
+    {
+        "name": "ltl2dba_C21",
+        "inputs": [
+            "p_0"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (F (p_0))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_R1",
+        "inputs": [
+            "p_0"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (F (p_0))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_U12",
+        "inputs": [
+            "p_0",
+            "p_1"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((p_0) U (p_1)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba27",
+        "inputs": [
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (G (! (p)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba23",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((p) -> (G (q)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba10",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((p) -> (F (q)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_beta1",
+        "inputs": [
+            "q_0",
+            "p_0"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F (p_0)) & (F (q_0))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_E2",
+        "inputs": [
+            "p_0",
+            "p_1"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F (p_0)) & (F (p_1))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba04",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((p) -> ((q) U (r)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_U13",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((p_0) U (p_1)) U (p_2)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "detector2",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G ((F (r_0)) & (F (r_1)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "ltl2dba01",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F ((q) & (X ((p) U (r))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_C22",
+        "inputs": [
+            "p_0",
+            "p_1"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((F (p_0)) & (F (p_1)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba14",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (((p) -> (F (q))) & (r))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba19",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((p) -> (X (X (X (q)))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba17",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (F ((p) <-> (X (X (q)))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "UnderapproxDemo",
+        "inputs": [
+            "p0p0p0f1dx1b"
+        ],
+        "outputs": [],
+        "formula": "(1) -> ((true)&(G ((p0p0p0f1dx1b) <-> (X (p0p0p0f1dx1b)))))"
+    },
+    {
+        "name": "ltl2dba05",
+        "inputs": [
+            "s",
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((p) U ((q) & (X ((r) U (s))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba15",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (F ((p) -> (X (X (X (q))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "lilydemo13",
+        "inputs": [
+            "r1"
+        ],
+        "outputs": [
+            "a1"
+        ],
+        "formula": "(1) -> (((G (r1)) -> (F (a1)))&((G (! (r1))) -> (F (! (a1)))))"
+    },
+    {
+        "name": "ltl2dba21",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (F ((p) <-> (X (X (X (q))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba26",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((p) -> (G ((q) -> (F (r)))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba03",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F ((p) & (X ((q) & (X (F (r))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_alpha1",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (((p) & (q)) & (X ((p) & (q))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_U14",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((p_0) U (p_1)) U (p_2)) U (p_3)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "lilydemo11",
+        "inputs": [
+            "go",
+            "req"
+        ],
+        "outputs": [
+            "ack",
+            "grant"
+        ],
+        "formula": "(1) -> ((F (((req) & (G (! (ack)))) | ((go) & (G (! (grant)))))))"
+    },
+    {
+        "name": "ltl2dba_E3",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((F (p_0)) & (F (p_1))) & (F (p_2))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "arbiter_with_buffer1",
+        "inputs": [
+            "try_0",
+            "r_0"
+        ],
+        "outputs": [
+            "ack_0",
+            "g_0"
+        ],
+        "formula": "(1) -> ((true)&(G ((r_0) -> (((try_0) <-> (X (ack_0))) U (g_0)))))"
+    },
+    {
+        "name": "ltl2dba_Q2",
+        "inputs": [
+            "p_0",
+            "p_1"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((G (p_1)) | (F (p_0))) & (F (p_1))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa04",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((F ((a) & (b))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "lilydemo10",
+        "inputs": [
+            "cancel",
+            "req"
+        ],
+        "outputs": [
+            "ack",
+            "grant"
+        ],
+        "formula": "(((G (F (req))) | (F (cancel)))) -> (((G (F (grant))) | (G (ack))))"
+    },
+    {
+        "name": "detector3",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G (((F (r_0)) & (F (r_1))) & (F (r_2)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "ltl2dba11",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((p) U ((q) U ((! (p)) U (! (q)))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba25",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((p) & ((q) -> ((q) U ((r) & (q)))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_theta1",
+        "inputs": [
+            "r",
+            "q",
+            "p_0"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G (F (p_0)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba18",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (((p) -> (F (q))) & ((q) -> (F (r))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba20",
+        "inputs": [
+            "s",
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (((p) -> (F (q))) & ((r) -> (F (s))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_C23",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (((F (p_0)) & (F (p_1))) & (F (p_2)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa16",
+        "inputs": [
+            "c",
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&(((F (a)) & (F (b))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "ltl2dpa08",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&(((G (b)) | (F (a))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "ltl2dpa05",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((G (F ((a) | (b)))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "ltl2dpa02",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((G ((a) | (F (b)))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "ltl2dba09",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((G (F (p))) | (G (F (q)))) | (G (F (r)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "example91",
+        "inputs": [
+            "r"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((g) -> (X (g)))&((g) <-> (X (g)))&(X (X (G ((r) <-> (X (g)))))))"
+    },
+    {
+        "name": "ltl2dba_U15",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((p_0) U (p_1)) U (p_2)) U (p_3)) U (p_4)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa06",
+        "inputs": [
+            "c",
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((G (((a) | (b)) | (c))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "ltl2dpa15",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((G ((F (a)) & (F (b)))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "ltl2dba16",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (((p) -> (F (q))) & ((! (p)) -> (F (! (q)))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_R2",
+        "inputs": [
+            "p_0",
+            "p_1"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((G (F (p_0))) | (F (G (p_1)))) & (G (F (p_1)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa07",
+        "inputs": [
+            "c",
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((G ((a) | (F ((b) | (c))))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "ltl2dpa09",
+        "inputs": [
+            "c",
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((G ((a) | (F ((b) & (c))))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "example7a1",
+        "inputs": [
+            "r_0"
+        ],
+        "outputs": [
+            "g_0"
+        ],
+        "formula": "(1) -> ((true)&(G ((r_0) -> (g_0)))&(G (((g_0) & (! (r_0))) -> (X (! (g_0))))))"
+    },
+    {
+        "name": "ltl2dba_E4",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_beta2",
+        "inputs": [
+            "q_0",
+            "q_1",
+            "p_0",
+            "p_1"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((p_0) & (F (p_1)))) & (F ((q_0) & (F (q_1))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba12",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((G (p)) -> (F (q))) & ((G (! (p))) -> (F (! (q))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba13",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (((! (r)) & ((p) -> (F (q)))) & ((q) -> (F (r))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "detector4",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G ((((F (r_0)) & (F (r_1))) & (F (r_2))) & (F (r_3)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "lilydemo12",
+        "inputs": [
+            "go",
+            "req"
+        ],
+        "outputs": [
+            "ack",
+            "grant"
+        ],
+        "formula": "(1) -> ((((G (! (grant))) | (G ((req) -> (F (ack))))) | (G ((go) -> (F (grant))))))"
+    },
+    {
+        "name": "ltl2dba_U16",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((p_0) U (p_1)) U (p_2)) U (p_3)) U (p_4)) U (p_5)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_alpha2",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (((p) & (q)) & (X (((p) & (q)) & (X ((p) & (q))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_C24",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_theta2",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G ((F (p_0)) & (F (p_1))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba06",
+        "inputs": [
+            "s",
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F ((p) & (X (F ((q) & (X (F ((r) & (X (F (s))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "simple_arbiter2",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "lilydemo23",
+        "inputs": [
+            "e"
+        ],
+        "outputs": [
+            "s"
+        ],
+        "formula": "((G (((e) & (X (s))) -> (X (e))))&(G (F (! (e))))) -> ((X (G ((! (e)) & (X (! (s)))))))"
+    },
+    {
+        "name": "ltl2dba08",
+        "inputs": [
+            "u",
+            "s",
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (((((F (p)) & (F (q))) & (F (r))) & (F (s))) & (F (u)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa11",
+        "inputs": [
+            "c",
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((G ((F ((a) | (b))) & (F ((b) | (c))))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "detector_unreal2",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G ((F (r_0)) & (F (r_1)))) <-> (G (F (g))))&(G (((r_0) & (r_1)) -> (G (! (g))))))"
+    },
+    {
+        "name": "example81",
+        "inputs": [
+            "r_0"
+        ],
+        "outputs": [
+            "g_0"
+        ],
+        "formula": "(1) -> ((true)&(G ((r_0) -> ((r_0) & (X (g_0)))))&(G (((g_0) & (! (r_0))) -> (X (! (g_0))))))"
+    },
+    {
+        "name": "ltl2dba_U17",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((p_0) U (p_1)) U (p_2)) U (p_3)) U (p_4)) U (p_5)) U (p_6)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_E5",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_Q3",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((G (p_1)) | (F (p_0))) & ((G (p_2)) | (F (p_1)))) & (F (p_2))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba02",
+        "inputs": [
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((p) U ((q) U (r))) & ((q) U ((r) U (p)))) & ((r) U ((p) U (q)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "lilydemo14",
+        "inputs": [
+            "r1",
+            "r0"
+        ],
+        "outputs": [
+            "g1",
+            "g0"
+        ],
+        "formula": "(1) -> ((G ((! (g0)) | (! (g1))))&((G (F (r0))) -> (G (F (g0))))&((G (F (r1))) -> (G (F (g1)))))"
+    },
+    {
+        "name": "example102",
+        "inputs": [
+            "r"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((X (X (X (r)))) -> (X (X (X (G ((r) <-> (g)))))))&((X (X (X (! (r))))) -> (G (! (g)))))"
+    },
+    {
+        "name": "detector5",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3",
+            "r_4"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G (((((F (r_0)) & (F (r_1))) & (F (r_2))) & (F (r_3))) & (F (r_4)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "ltl2dba_C25",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_theta3",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1",
+            "p_2"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G (((F (p_0)) & (F (p_1))) & (F (p_2))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa23",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((F (G ((G (F (b))) | (F ((a) | (G ((a) | (b)))))))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "ltl2dba_alpha3",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X ((p) & (q))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_U18",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((((p_0) U (p_1)) U (p_2)) U (p_3)) U (p_4)) U (p_5)) U (p_6)) U (p_7)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "example72",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G ((r_0) -> ((g_0) | (X (g_0)))))&(G ((r_1) -> ((g_1) | (X (g_1))))))"
+    },
+    {
+        "name": "ltl2dba_E6",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_beta3",
+        "inputs": [
+            "q_0",
+            "q_1",
+            "q_2",
+            "p_0",
+            "p_1",
+            "p_2"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((p_0) & (F ((p_1) & (F (p_2)))))) & (F ((q_0) & (F ((q_1) & (F (q_2))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "detector6",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3",
+            "r_4",
+            "r_5"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G ((((((F (r_0)) & (F (r_1))) & (F (r_2))) & (F (r_3))) & (F (r_4))) & (F (r_5)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "example92",
+        "inputs": [
+            "r"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((g) -> (X (X (g))))&(X ((r) <-> (g)))&((X (g)) <-> (X (X (g))))&(X (X (X (G ((r) <-> (X (X (g)))))))))"
+    },
+    {
+        "name": "ltl2dba_C26",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_theta4",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G ((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba07",
+        "inputs": [
+            "w",
+            "v",
+            "u",
+            "s",
+            "r",
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((p) U ((q) & (X ((r) & (F ((s) & (X (F ((u) & (X (F ((v) & (X (F (w))))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "amba_decomposed_shift",
+        "inputs": [
+            "locked",
+            "hready"
+        ],
+        "outputs": [
+            "hmastlock"
+        ],
+        "formula": "(1) -> ((G ((hready) -> ((X (hmastlock)) <-> (locked))))&(G ((! (hready)) -> ((X (hmastlock)) <-> (hmastlock)))))"
+    },
+    {
+        "name": "ltl2dba_U19",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((((p_0) U (p_1)) U (p_2)) U (p_3)) U (p_4)) U (p_5)) U (p_6)) U (p_7)) U (p_8)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_R3",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((G (F (p_0))) | (F (G (p_1)))) & ((G (F (p_1))) | (F (G (p_2))))) & (G (F (p_2)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa24",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((F (G ((G (F (b))) | (F (((a) | (G ((a) | (b)))) | (G (b))))))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "lilydemo09",
+        "inputs": [
+            "req"
+        ],
+        "outputs": [
+            "grant"
+        ],
+        "formula": "((G (F (req)))) -> ((G ((! (grant)) -> ((! (grant)) U (req))))&(G ((req) -> (F (grant))))&(! (grant))&(G (F (grant))))"
+    },
+    {
+        "name": "ltl2dba_E7",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_Q4",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((G (p_1)) | (F (p_0))) & ((G (p_2)) | (F (p_1)))) & ((G (p_3)) | (F (p_2)))) & (F (p_3))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "UnderapproxDemo2",
+        "inputs": [
+            "p0p0p0y",
+            "p0p0p0x"
+        ],
+        "outputs": [
+            "u0y0y",
+            "u0y0x"
+        ],
+        "formula": "(1) -> ((G (((u0y0x) & (! (u0y0y))) <-> ((! (u0y0y)) | (u0y0x))))&(G ((u0y0y) | (u0y0x)))&((F (p0p0p0x)) -> (F (p0p0p0y))))"
+    },
+    {
+        "name": "prioritized_arbiter1",
+        "inputs": [
+            "r_m",
+            "r_0"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((true)&(G ((! (g_m)) | (! (g_0))))&(G ((r_0) -> (F (g_0))))&(G ((r_m) -> (X ((! (g_0)) U (g_m))))))"
+    },
+    {
+        "name": "ltl2dba_alpha4",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X ((p) & (q))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "detector7",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3",
+            "r_4",
+            "r_5",
+            "r_6"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G (((((((F (r_0)) & (F (r_1))) & (F (r_2))) & (F (r_3))) & (F (r_4))) & (F (r_5))) & (F (r_6)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "ltl2dba_U110",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((((((p_0) U (p_1)) U (p_2)) U (p_3)) U (p_4)) U (p_5)) U (p_6)) U (p_7)) U (p_8)) U (p_9)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_C27",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_theta5",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G (((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa20",
+        "inputs": [
+            "c",
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((((F (((b) & (G (F (a)))) | ((c) & (G (F (! (a))))))) & (F (b))) & (F (c))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "ltl2dpa17",
+        "inputs": [
+            "c",
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((((G (((b) & ((c) | (G (F (! (a)))))) & (G (F (a))))) | (G (b))) | (G (c))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "ltl2dpa18",
+        "inputs": [
+            "c",
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G ((p0) <-> (! (p1))))&((((G (((b) | (F (G (a)))) & ((c) | (F (G (! (a))))))) | (G (b))) | (G (c))) <-> (G (F (p0)))))"
+    },
+    {
+        "name": "EscalatorNonReactive",
+        "inputs": [],
+        "outputs": [
+            "u0steps0f1dmove1b",
+            "u0steps0steps"
+        ],
+        "formula": "(1) -> ((G (((u0steps0steps) & (! (u0steps0f1dmove1b))) <-> ((! (u0steps0f1dmove1b)) | (u0steps0steps))))&(G (u0steps0f1dmove1b)))"
+    },
+    {
+        "name": "lilydemo15",
+        "inputs": [
+            "r2",
+            "r1"
+        ],
+        "outputs": [
+            "a2",
+            "a1"
+        ],
+        "formula": "(1) -> ((G ((r1) -> (F (a1))))&(G ((r2) -> (F (a2))))&(G ((! (a1)) | (! (a2))))&(((a1) U (r1)) | (G (a1)))&(((a2) U (r2)) | (G (a2))))"
+    },
+    {
+        "name": "simple_arbiter_unreal22",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (F ((g_0) & (g_1)))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_1",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X ((g_0) & (g_1)))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "ltl2dba_E8",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_beta4",
+        "inputs": [
+            "q_0",
+            "q_1",
+            "q_2",
+            "q_3",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((p_0) & (F ((p_1) & (F ((p_2) & (F (p_3)))))))) & (F ((q_0) & (F ((q_1) & (F ((q_2) & (F (q_3))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "arbiter_with_buffer2",
+        "inputs": [
+            "try_0",
+            "try_1",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "ack_0",
+            "ack_1",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G ((r_0) -> (((try_0) <-> (X (ack_0))) U (g_0))))&(G ((r_1) -> (((try_1) <-> (X (ack_1))) U (g_1)))))"
+    },
+    {
+        "name": "detector8",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3",
+            "r_4",
+            "r_5",
+            "r_6",
+            "r_7"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G ((((((((F (r_0)) & (F (r_1))) & (F (r_2))) & (F (r_3))) & (F (r_4))) & (F (r_5))) & (F (r_6))) & (F (r_7)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_2",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X ((g_0) & (g_1))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "ltl2dba_theta6",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G ((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "lilydemo19",
+        "inputs": [
+            "ec",
+            "ets"
+        ],
+        "outputs": [
+            "fl",
+            "hl"
+        ],
+        "formula": "((G (F (ets)))) -> ((G ((hl) -> ((hl) U (ets))))&(G ((fl) -> ((fl) U (ets))))&(G ((! (hl)) | (! (fl))))&(G ((ec) -> (F (fl))))&(G (F (hl))))"
+    },
+    {
+        "name": "ltl2dba_C28",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "example103",
+        "inputs": [
+            "r"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((X (X (X ((r) & (X (X (r))))))) -> (X (X (X (X (X (G ((r) <-> (g)))))))))&((X (X (X ((! (r)) | (X (X (! (r)))))))) -> (G (! (g)))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_3",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X ((g_0) & (g_1)))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "lilydemo02",
+        "inputs": [
+            "go",
+            "cancel",
+            "req"
+        ],
+        "outputs": [
+            "grant"
+        ],
+        "formula": "(1) -> ((G ((req) -> (X ((grant) | (X ((grant) | (X (grant))))))))&(G ((grant) -> (X (! (grant)))))&(G ((cancel) -> (X ((! (grant)) U (go))))))"
+    },
+    {
+        "name": "lilydemo01",
+        "inputs": [
+            "go",
+            "cancel",
+            "req"
+        ],
+        "outputs": [
+            "grant"
+        ],
+        "formula": "(1) -> ((G ((req) -> (X ((grant) & (X ((grant) & (X (grant))))))))&(G ((grant) -> (X (! (grant)))))&(G ((cancel) -> (X ((! (grant)) U (go))))))"
+    },
+    {
+        "name": "ltl2dba_alpha5",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X ((p) & (q))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_4",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X ((g_0) & (g_1))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "ltl2dba_E9",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "CheckWindows_54e1f7d2",
+        "inputs": [
+            "p0p0all2windows2closed0room",
+            "p0b0room29window29closed",
+            "p0b0room29window29opened"
+        ],
+        "outputs": [],
+        "formula": "(1) -> ((true)&(F ((p0b0room29window29opened) & ((! (p0b0room29window29closed)) U ((p0p0all2windows2closed0room) & (! (p0b0room29window29closed)))))))"
+    },
+    {
+        "name": "ltl2dba_R4",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((G (F (p_0))) | (F (G (p_1)))) & ((G (F (p_1))) | (F (G (p_2))))) & ((G (F (p_2))) | (F (G (p_3))))) & (G (F (p_3)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_Q5",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((G (p_1)) | (F (p_0))) & ((G (p_2)) | (F (p_1)))) & ((G (p_3)) | (F (p_2)))) & ((G (p_4)) | (F (p_3)))) & (F (p_4))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_5",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X ((g_0) & (g_1)))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "detector9",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3",
+            "r_4",
+            "r_5",
+            "r_6",
+            "r_7",
+            "r_8"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G (((((((((F (r_0)) & (F (r_1))) & (F (r_2))) & (F (r_3))) & (F (r_4))) & (F (r_5))) & (F (r_6))) & (F (r_7))) & (F (r_8)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "CheckWindows_2418b67e",
+        "inputs": [
+            "p0p02device29all2windows2closed02device29room",
+            "p0b02device29closed",
+            "p0b02device29opened"
+        ],
+        "outputs": [],
+        "formula": "(1) -> ((true)&(F ((p0b02device29opened) & ((! (p0b02device29closed)) U ((p0p02device29all2windows2closed02device29room) & (! (p0b02device29closed)))))))"
+    },
+    {
+        "name": "example93",
+        "inputs": [
+            "r"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((g) -> (X (X (X (g)))))&(X ((r) <-> (g)))&(X (X ((r) <-> (g))))&((X (X (g))) <-> (X (X (X (g)))))&(X (X (X (X (G ((r) <-> (X (X (X (g)))))))))))"
+    },
+    {
+        "name": "simple_arbiter3",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1",
+            "g_2"
+        ],
+        "formula": "(1) -> ((G (((! (g_0)) & (! (g_1))) | (((! (g_0)) | (! (g_1))) & (! (g_2)))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_2) -> (F (g_2)))))"
+    },
+    {
+        "name": "ltl2dba_theta7",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G (((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_C29",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G (((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_6",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X ((g_0) & (g_1))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "UnderapproxStrengthenedDemo",
+        "inputs": [
+            "p0p0p0f1dx1b"
+        ],
+        "outputs": [],
+        "formula": "(1) -> ((true)&((G (((p0p0p0f1dx1b) <-> (X (p0p0p0f1dx1b))) & ((p0p0p0f1dx1b) <-> (X (X (p0p0p0f1dx1b)))))) -> (G ((p0p0p0f1dx1b) <-> (X (p0p0p0f1dx1b))))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_7",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X ((g_0) & (g_1)))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "KitchenTimerV0",
+        "inputs": [
+            "p0b0btn2sec",
+            "p0b0btn2min"
+        ],
+        "outputs": [
+            "u0time0f1dzero1b",
+            "u0time0time"
+        ],
+        "formula": "(1) -> ((G (((u0time0time) & (! (u0time0f1dzero1b))) <-> ((! (u0time0f1dzero1b)) | (u0time0time))))&(G (((p0b0btn2min) & (p0b0btn2sec)) <-> (u0time0f1dzero1b))))"
+    },
+    {
+        "name": "lilydemo17",
+        "inputs": [
+            "i1",
+            "i0"
+        ],
+        "outputs": [
+            "a2",
+            "a1",
+            "a0"
+        ],
+        "formula": "(1) -> ((G ((! (a0)) | (! (a1))))&(G ((! (a1)) | (! (a2))))&(G ((! (a2)) | (! (a0))))&((G (F (i0))) -> (G (F (a0))))&((G (F (i1))) -> (G (F (a1))))&(G (F (a2))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_8",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X ((g_0) & (g_1))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "ltl2dba_E10",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_beta5",
+        "inputs": [
+            "q_0",
+            "q_1",
+            "q_2",
+            "q_3",
+            "q_4",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((p_0) & (F ((p_1) & (F ((p_2) & (F ((p_3) & (F (p_4)))))))))) & (F ((q_0) & (F ((q_1) & (F ((q_2) & (F ((q_3) & (F (q_4))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_alpha6",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X ((p) & (q))))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "detector10",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3",
+            "r_4",
+            "r_5",
+            "r_6",
+            "r_7",
+            "r_8",
+            "r_9"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G ((((((((((F (r_0)) & (F (r_1))) & (F (r_2))) & (F (r_3))) & (F (r_4))) & (F (r_5))) & (F (r_6))) & (F (r_7))) & (F (r_8))) & (F (r_9)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_9",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X (X ((g_0) & (g_1)))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "ltl2dba_C210",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "lilydemo03",
+        "inputs": [
+            "go",
+            "cancel",
+            "req"
+        ],
+        "outputs": [
+            "grant"
+        ],
+        "formula": "((G ((cancel) -> (X (go))))) -> ((G ((req) -> (X ((grant) | (X ((grant) | (X (grant))))))))&(G ((grant) -> (X (! (grant)))))&(G ((cancel) -> (X ((! (grant)) U (go))))))"
+    },
+    {
+        "name": "ltl2dba_theta8",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G ((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_10",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X (X (X ((g_0) & (g_1))))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "ltl2dba_Q6",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((G (p_1)) | (F (p_0))) & ((G (p_2)) | (F (p_1)))) & ((G (p_3)) | (F (p_2)))) & ((G (p_4)) | (F (p_3)))) & ((G (p_5)) | (F (p_4)))) & (F (p_5))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "simple_arbiter_unreal12_12",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X (X (X (X (X ((g_0) & (g_1))))))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    },
+    {
+        "name": "detector_unreal3",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G (((F (r_0)) & (F (r_1))) & (F (r_2)))) <-> (G (F (g))))&(G (((((r_0) & (r_1)) -> (G (! (g)))) & (((r_0) & (r_2)) -> (G (! (g))))) & (((r_1) & (r_2)) -> (G (! (g)))))))"
+    },
+    {
+        "name": "lilydemo04",
+        "inputs": [
+            "go",
+            "cancel",
+            "req"
+        ],
+        "outputs": [
+            "grant"
+        ],
+        "formula": "((G ((cancel) -> (X ((go) | (X (go))))))) -> ((G ((req) -> (X ((grant) | (X ((grant) | (X (grant))))))))&(G ((grant) -> (X (! (grant)))))&(G ((cancel) -> (X ((! (grant)) U (go))))))"
+    },
+    {
+        "name": "SensorRegister",
+        "inputs": [
+            "p0p0reg2cmp0f1dmy2type1b0reg2type"
+        ],
+        "outputs": [
+            "u0reg2val0reg2val",
+            "u0reg2val0reg2data"
+        ],
+        "formula": "(1) -> ((G (((u0reg2val0reg2data) & (! (u0reg2val0reg2val))) <-> ((! (u0reg2val0reg2val)) | (u0reg2val0reg2data))))&(G ((p0p0reg2cmp0f1dmy2type1b0reg2type) <-> (u0reg2val0reg2data))))"
+    },
+    {
+        "name": "ltl2dba_alpha7",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X ((p) & (q))))))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa01",
+        "inputs": [
+            "a"
+        ],
+        "outputs": [
+            "p2",
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G (((((p0) & (! (p1))) & (! (p2))) | (((! (p0)) & (p1)) & (! (p2)))) | (((! (p0)) & (! (p1))) & (p2))))&((F (G (! (a)))) <-> ((G (F (p0))) | ((F (G (! (p1)))) & (G (F (p2)))))))"
+    },
+    {
+        "name": "ltl2dba_R5",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((G (F (p_0))) | (F (G (p_1)))) & ((G (F (p_1))) | (F (G (p_2))))) & ((G (F (p_2))) | (F (G (p_3))))) & ((G (F (p_3))) | (F (G (p_4))))) & (G (F (p_4)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "Increment",
+        "inputs": [
+            "p0p0event0click"
+        ],
+        "outputs": [
+            "u0count0f1dincrement0count1b",
+            "u0count0count"
+        ],
+        "formula": "(1) -> ((G (((u0count0count) & (! (u0count0f1dincrement0count1b))) <-> ((! (u0count0f1dincrement0count1b)) | (u0count0count))))&(G ((p0p0event0click) <-> (u0count0f1dincrement0count1b))))"
+    },
+    {
+        "name": "example82",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G (((r_0) | (r_1)) -> (((r_0) & (X (g_0))) | ((r_1) & (X (g_1))))))&(G (((g_0) & (! (r_0))) -> (X (! (g_0)))))&(G (((g_1) & (! (r_1))) -> (X (! (g_1))))))"
+    },
+    {
+        "name": "example7a2",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "(1) -> ((G ((! (g_0)) | (! (g_1))))&(G ((r_0) -> ((g_0) | (X (g_0)))))&(G ((r_1) -> ((g_1) | (X (g_1)))))&(G (((g_0) & (! (r_0))) -> (X (! (g_0)))))&(G (((g_1) & (! (r_1))) -> (X (! (g_1))))))"
+    },
+    {
+        "name": "ltl2dba_beta6",
+        "inputs": [
+            "q_0",
+            "q_1",
+            "q_2",
+            "q_3",
+            "q_4",
+            "q_5",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((p_0) & (F ((p_1) & (F ((p_2) & (F ((p_3) & (F ((p_4) & (F (p_5)))))))))))) & (F ((q_0) & (F ((q_1) & (F ((q_2) & (F ((q_3) & (F ((q_4) & (F (q_5))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_E12",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) & (F (p_10))) & (F (p_11))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "detector12",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3",
+            "r_4",
+            "r_5",
+            "r_6",
+            "r_7",
+            "r_8",
+            "r_9",
+            "r_10",
+            "r_11"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G ((((((((((((F (r_0)) & (F (r_1))) & (F (r_2))) & (F (r_3))) & (F (r_4))) & (F (r_5))) & (F (r_6))) & (F (r_7))) & (F (r_8))) & (F (r_9))) & (F (r_10))) & (F (r_11)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "ltl2dba_theta10",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G ((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa21",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p2",
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G (((((p0) & (! (p1))) & (! (p2))) | (((! (p0)) & (p1)) & (! (p2)))) | (((! (p0)) & (! (p1))) & (p2))))&(((G (F (b))) | (F (G (a)))) <-> ((G (F (p0))) | ((F (G (! (p1)))) & (G (F (p2)))))))"
+    },
+    {
+        "name": "ltl2dpa10",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p2",
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G (((((p0) & (! (p1))) & (! (p2))) | (((! (p0)) & (p1)) & (! (p2)))) | (((! (p0)) & (! (p1))) & (p2))))&(((G (F (b))) | (F (G (a)))) <-> ((G (F (p0))) | ((F (G (! (p1)))) & (G (F (p2)))))))"
+    },
+    {
+        "name": "ltl2dba_C212",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) & (F (p_10))) & (F (p_11)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa14",
+        "inputs": [
+            "a"
+        ],
+        "outputs": [
+            "p2",
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G (((((p0) & (! (p1))) & (! (p2))) | (((! (p0)) & (p1)) & (! (p2)))) | (((! (p0)) & (! (p1))) & (p2))))&(((F (G (a))) & (G (F (a)))) <-> ((G (F (p0))) | ((F (G (! (p1)))) & (G (F (p2)))))))"
+    },
+    {
+        "name": "example10a1",
+        "inputs": [
+            "r"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> ((G (((g) & (G (! (r)))) -> (F (! (g)))))&(G (((g) & (X ((! (r)) & (! (g))))) -> (X ((r) R (! (g))))))&((r) R (! (g)))&(G ((r) -> (F (g))))&(X (X (G (((! (g)) & (X (g))) -> (X (X (g)))))))&(true))"
+    },
+    {
+        "name": "ltl2dba_alpha8",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X ((p) & (q))))))))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_Q7",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((((G (p_1)) | (F (p_0))) & ((G (p_2)) | (F (p_1)))) & ((G (p_3)) | (F (p_2)))) & ((G (p_4)) | (F (p_3)))) & ((G (p_5)) | (F (p_4)))) & ((G (p_6)) | (F (p_5)))) & (F (p_6))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "shift8",
+        "inputs": [
+            "in_0",
+            "in_1",
+            "in_2",
+            "in_3",
+            "in_4",
+            "in_5",
+            "in_6",
+            "in_7"
+        ],
+        "outputs": [
+            "out_0",
+            "out_1",
+            "out_2",
+            "out_3",
+            "out_4",
+            "out_5",
+            "out_6",
+            "out_7"
+        ],
+        "formula": "(1) -> ((G ((in_0) <-> (out_1)))&(G ((in_1) <-> (out_2)))&(G ((in_2) <-> (out_3)))&(G ((in_3) <-> (out_4)))&(G ((in_4) <-> (out_5)))&(G ((in_5) <-> (out_6)))&(G ((in_6) <-> (out_7)))&(G ((in_7) <-> (out_0))))"
+    },
+    {
+        "name": "ltl2dpa03",
+        "inputs": [
+            "c",
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p2",
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G (((((p0) & (! (p1))) & (! (p2))) | (((! (p0)) & (p1)) & (! (p2)))) | (((! (p0)) & (! (p1))) & (p2))))&(((G (F (c))) | (F ((G (a)) | (G (b))))) <-> ((G (F (p0))) | ((F (G (! (p2)))) & (G (F (p1)))))))"
+    },
+    {
+        "name": "prioritized_arbiter2",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "arbiter1",
+        "inputs": [
+            "r_0"
+        ],
+        "outputs": [
+            "g_0"
+        ],
+        "formula": "(1) -> ((true)&(((! (g_0)) U (r_0)) | (G (! (g_0))))&(G (((g_0) & (X ((! (r_0)) & (! (g_0))))) -> (X (((! (g_0)) U (r_0)) | (G (! (g_0)))))))&(G (((g_0) & (G (! (r_0)))) -> (F (! (g_0)))))&(G ((r_0) -> (F (g_0)))))"
+    },
+    {
+        "name": "simple_arbiter4",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1",
+            "g_2",
+            "g_3"
+        ],
+        "formula": "(1) -> ((G ((((! (g_0)) & (! (g_1))) & ((! (g_2)) | (! (g_3)))) | ((((! (g_0)) | (! (g_1))) & (! (g_2))) & (! (g_3)))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_2) -> (F (g_2))))&(G ((r_3) -> (F (g_3)))))"
+    },
+    {
+        "name": "lilydemo05",
+        "inputs": [
+            "go",
+            "cancel",
+            "req"
+        ],
+        "outputs": [
+            "grant"
+        ],
+        "formula": "((G ((cancel) -> (X ((go) | (X (go))))))) -> ((G ((req) -> (X (((grant) | (cancel)) | (X (((grant) | (cancel)) | (X ((grant) | (cancel)))))))))&(G ((grant) -> (X (! (grant)))))&(G ((cancel) -> (X ((! (grant)) U (go))))))"
+    },
+    {
+        "name": "ltl2dba_beta7",
+        "inputs": [
+            "q_0",
+            "q_1",
+            "q_2",
+            "q_3",
+            "q_4",
+            "q_5",
+            "q_6",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((p_0) & (F ((p_1) & (F ((p_2) & (F ((p_3) & (F ((p_4) & (F ((p_5) & (F (p_6)))))))))))))) & (F ((q_0) & (F ((q_1) & (F ((q_2) & (F ((q_3) & (F ((q_4) & (F ((q_5) & (F (q_6))))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_R6",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((G (F (p_0))) | (F (G (p_1)))) & ((G (F (p_1))) | (F (G (p_2))))) & ((G (F (p_2))) | (F (G (p_3))))) & ((G (F (p_3))) | (F (G (p_4))))) & ((G (F (p_4))) | (F (G (p_5))))) & (G (F (p_5)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_E14",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11",
+            "p_12",
+            "p_13"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) & (F (p_10))) & (F (p_11))) & (F (p_12))) & (F (p_13))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "example73",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1",
+            "g_2"
+        ],
+        "formula": "(1) -> ((G (((! (g_0)) & (! (g_1))) | (((! (g_0)) | (! (g_1))) & (! (g_2)))))&(G ((r_0) -> ((g_0) | (X ((g_0) | (X (g_0)))))))&(G ((r_1) -> ((g_1) | (X ((g_1) | (X (g_1)))))))&(G ((r_2) -> ((g_2) | (X ((g_2) | (X (g_2))))))))"
+    },
+    {
+        "name": "detector14",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3",
+            "r_4",
+            "r_5",
+            "r_6",
+            "r_7",
+            "r_8",
+            "r_9",
+            "r_10",
+            "r_11",
+            "r_12",
+            "r_13"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G ((((((((((((((F (r_0)) & (F (r_1))) & (F (r_2))) & (F (r_3))) & (F (r_4))) & (F (r_5))) & (F (r_6))) & (F (r_7))) & (F (r_8))) & (F (r_9))) & (F (r_10))) & (F (r_11))) & (F (r_12))) & (F (r_13)))) <-> (G (F (g)))))"
+    },
+    {
+        "name": "ltl2dba_theta12",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G ((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) & (F (p_10))) & (F (p_11))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_C214",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11",
+            "p_12",
+            "p_13"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) & (F (p_10))) & (F (p_11))) & (F (p_12))) & (F (p_13)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa13",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p2",
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G (((((p0) & (! (p1))) & (! (p2))) | (((! (p0)) & (p1)) & (! (p2)))) | (((! (p0)) & (! (p1))) & (p2))))&(((((F (G (b))) & (G (F (a)))) | (! (b))) | (F (G (! (a))))) <-> ((G (F (p0))) | ((F (G (! (p1)))) & (G (F (p2)))))))"
+    },
+    {
+        "name": "arbiter_with_buffer3",
+        "inputs": [
+            "try_0",
+            "try_1",
+            "try_2",
+            "r_0",
+            "r_1",
+            "r_2"
+        ],
+        "outputs": [
+            "ack_0",
+            "ack_1",
+            "ack_2",
+            "g_0",
+            "g_1",
+            "g_2"
+        ],
+        "formula": "(1) -> ((G (((! (g_0)) & (! (g_1))) | (((! (g_0)) | (! (g_1))) & (! (g_2)))))&(G ((r_0) -> (((try_0) <-> (X (ack_0))) U (g_0))))&(G ((r_1) -> (((try_1) <-> (X (ack_1))) U (g_1))))&(G ((r_2) -> (((try_2) <-> (X (ack_2))) U (g_2)))))"
+    },
+    {
+        "name": "lilydemo06",
+        "inputs": [
+            "go",
+            "cancel",
+            "req"
+        ],
+        "outputs": [
+            "grant"
+        ],
+        "formula": "((G ((cancel) -> (X ((go) | (X ((go) | (X (go))))))))) -> ((G ((req) -> (X (((grant) | (cancel)) | (X (((grant) | (cancel)) | (X ((grant) | (cancel)))))))))&(G ((grant) -> (X (! (grant)))))&(G ((cancel) -> (X ((! (grant)) U (go))))))"
+    },
+    {
+        "name": "ltl2dba_Q8",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((((G (p_1)) | (F (p_0))) & ((G (p_2)) | (F (p_1)))) & ((G (p_3)) | (F (p_2)))) & ((G (p_4)) | (F (p_3)))) & ((G (p_5)) | (F (p_4)))) & ((G (p_6)) | (F (p_5)))) & ((G (p_7)) | (F (p_6)))) & (F (p_7))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "amba_decomposed_decode",
+        "inputs": [
+            "hburst_0",
+            "hburst_1"
+        ],
+        "outputs": [
+            "incr",
+            "burst4",
+            "single"
+        ],
+        "formula": "(1) -> ((G (((! (hburst_0)) & (! (hburst_1))) -> (single)))&(G (((hburst_0) & (! (hburst_1))) -> (burst4)))&(G (((! (hburst_0)) & (hburst_1)) -> (incr)))&(G ((! (single)) | ((! (burst4)) & (! (incr)))))&(G ((! (burst4)) | (! (incr)))))"
+    },
+    {
+        "name": "amba_decomposed_encode2",
+        "inputs": [
+            "hready",
+            "hgrant_0",
+            "hgrant_1"
+        ],
+        "outputs": [
+            "hmaster_0"
+        ],
+        "formula": "((G ((! (hgrant_0)) | (! (hgrant_1))))&(G ((hgrant_0) | (hgrant_1)))) -> ((G ((hready) -> ((X (! (hmaster_0))) <-> (hgrant_0))))&(G ((hready) -> ((X (hmaster_0)) <-> (hgrant_1))))&(G ((! (hready)) -> ((X (hmaster_0)) <-> (hmaster_0)))))"
+    },
+    {
+        "name": "lilydemo16",
+        "inputs": [
+            "r2",
+            "r1",
+            "r0"
+        ],
+        "outputs": [
+            "a2",
+            "a1",
+            "a0"
+        ],
+        "formula": "(1) -> ((G ((r0) -> (F (a0))))&(G ((r1) -> (F (a1))))&(G ((r2) -> (F (a2))))&(G ((! (a0)) | (! (a1))))&(G ((! (a0)) | (! (a2))))&(G ((! (a1)) | (! (a2))))&(((a0) U (r0)) | (G (a0)))&(((a1) U (r1)) | (G (a1)))&(((a2) U (r2)) | (G (a2))))"
+    },
+    {
+        "name": "ltl2dba_E15",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11",
+            "p_12",
+            "p_13",
+            "p_14"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) & (F (p_10))) & (F (p_11))) & (F (p_12))) & (F (p_13))) & (F (p_14))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_alpha10",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X ((p) & (q))))))))))))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "lilydemo07",
+        "inputs": [
+            "go",
+            "cancel",
+            "req"
+        ],
+        "outputs": [
+            "grant"
+        ],
+        "formula": "((G ((cancel) -> (X ((go) | (X (go))))))) -> ((G ((cancel) -> (X ((! (grant)) U (go)))))&(G ((grant) -> (X (! (grant)))))&(G ((req) -> (((grant) | (cancel)) | (X (((grant) | (cancel)) | (X (((grant) | (cancel)) | (X ((grant) | (cancel)))))))))))"
+    },
+    {
+        "name": "ltl2dpa19",
+        "inputs": [
+            "c",
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p2",
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G (((((p0) & (! (p1))) & (! (p2))) | (((! (p0)) & (p1)) & (! (p2)))) | (((! (p0)) & (! (p1))) & (p2))))&((((F (((b) & (F (G (a)))) | ((c) & (F (G (! (a))))))) & (F (b))) & (F (c))) <-> ((G (F (p0))) | ((F (G (! (p1)))) & (G (F (p2)))))))"
+    },
+    {
+        "name": "ltl2dba_beta8",
+        "inputs": [
+            "q_0",
+            "q_1",
+            "q_2",
+            "q_3",
+            "q_4",
+            "q_5",
+            "q_6",
+            "q_7",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((p_0) & (F ((p_1) & (F ((p_2) & (F ((p_3) & (F ((p_4) & (F ((p_5) & (F ((p_6) & (F (p_7)))))))))))))))) & (F ((q_0) & (F ((q_1) & (F ((q_2) & (F ((q_3) & (F ((q_4) & (F ((q_5) & (F ((q_6) & (F (q_7))))))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa22",
+        "inputs": [
+            "b",
+            "a5",
+            "a4",
+            "a3",
+            "a2",
+            "a1"
+        ],
+        "outputs": [
+            "p2",
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G (((((p0) & (! (p1))) & (! (p2))) | (((! (p0)) & (p1)) & (! (p2)))) | (((! (p0)) & (! (p1))) & (p2))))&(((G (((((F (a1)) & (F (a2))) & (F (a3))) & (F (a4))) & (F (a5)))) -> (G (F (b)))) <-> ((G (F (p0))) | ((F (G (! (p1)))) & (G (F (p2)))))))"
+    },
+    {
+        "name": "ltl2dba_E16",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11",
+            "p_12",
+            "p_13",
+            "p_14",
+            "p_15"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) & (F (p_10))) & (F (p_11))) & (F (p_12))) & (F (p_13))) & (F (p_14))) & (F (p_15))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_theta14",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11",
+            "p_12",
+            "p_13"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G ((((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) & (F (p_10))) & (F (p_11))) & (F (p_12))) & (F (p_13))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_C216",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11",
+            "p_12",
+            "p_13",
+            "p_14",
+            "p_15"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((G ((((((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) & (F (p_10))) & (F (p_11))) & (F (p_12))) & (F (p_13))) & (F (p_14))) & (F (p_15)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_R7",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((((((((G (F (p_0))) | (F (G (p_1)))) & ((G (F (p_1))) | (F (G (p_2))))) & ((G (F (p_2))) | (F (G (p_3))))) & ((G (F (p_3))) | (F (G (p_4))))) & ((G (F (p_4))) | (F (G (p_5))))) & ((G (F (p_5))) | (F (G (p_6))))) & (G (F (p_6)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "shift10",
+        "inputs": [
+            "in_0",
+            "in_1",
+            "in_2",
+            "in_3",
+            "in_4",
+            "in_5",
+            "in_6",
+            "in_7",
+            "in_8",
+            "in_9"
+        ],
+        "outputs": [
+            "out_0",
+            "out_1",
+            "out_2",
+            "out_3",
+            "out_4",
+            "out_5",
+            "out_6",
+            "out_7",
+            "out_8",
+            "out_9"
+        ],
+        "formula": "(1) -> ((G ((in_0) <-> (out_1)))&(G ((in_1) <-> (out_2)))&(G ((in_2) <-> (out_3)))&(G ((in_3) <-> (out_4)))&(G ((in_4) <-> (out_5)))&(G ((in_5) <-> (out_6)))&(G ((in_6) <-> (out_7)))&(G ((in_7) <-> (out_8)))&(G ((in_8) <-> (out_9)))&(G ((in_9) <-> (out_0))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_1",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X ((g_0) & (g_1)))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal22",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (F ((g_0) & (g_1)))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_2",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X ((g_0) & (g_1))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "amba_decomposed_lock2",
+        "inputs": [
+            "decide",
+            "hlock_0",
+            "hlock_1",
+            "hgrant_0",
+            "hgrant_1"
+        ],
+        "outputs": [
+            "locked"
+        ],
+        "formula": "((G ((! (hgrant_0)) | (! (hgrant_1))))&(G ((hgrant_0) | (hgrant_1)))) -> ((G (((decide) & (X (hgrant_0))) -> ((X (locked)) <-> (X (hlock_0)))))&(G (((decide) & (X (hgrant_1))) -> ((X (locked)) <-> (X (hlock_1)))))&(G ((! (decide)) -> ((X (locked)) <-> (locked)))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_3",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X ((g_0) & (g_1)))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "lilydemo18",
+        "inputs": [
+            "i2",
+            "i1",
+            "i0"
+        ],
+        "outputs": [
+            "a3",
+            "a2",
+            "a1",
+            "a0"
+        ],
+        "formula": "(1) -> ((G ((! (a0)) | (! (a1))))&(G ((! (a0)) | (! (a2))))&(G ((! (a0)) | (! (a3))))&(G ((! (a1)) | (! (a2))))&(G ((! (a1)) | (! (a3))))&(G ((! (a2)) | (! (a3))))&((G (F (i0))) -> (G (F (a0))))&((G (F (i1))) -> (G (F (a1))))&((G (F (i2))) -> (G (F (a2))))&(G (F (a3))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_4",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X ((g_0) & (g_1))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_5",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X ((g_0) & (g_1)))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_6",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X ((g_0) & (g_1))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "Time_a50cadd7",
+        "inputs": [
+            "p0p0between0t29pm70t29pm8",
+            "p0p0between0t29am50t29am2423",
+            "p0b0t29sunday",
+            "p0b0t29saturday"
+        ],
+        "outputs": [],
+        "formula": "(1) -> ((true)&(G (F (p0p0between0t29am50t29am2423)))&(G (F (! (p0p0between0t29am50t29am2423))))&(G (F (p0b0t29saturday)))&(G (F (! (p0b0t29saturday))))&(G (F (p0b0t29sunday)))&(G (F (! (p0b0t29sunday))))&(G (F (p0p0between0t29pm70t29pm8)))&(G (F (! (p0p0between0t29pm70t29pm8)))))"
+    },
+    {
+        "name": "CheckTime_54e1f7d2",
+        "inputs": [
+            "p0p0between0t29pm70t29pm8",
+            "p0p0between0t29am50t29am2423",
+            "p0b0t29sunday",
+            "p0b0t29saturday"
+        ],
+        "outputs": [],
+        "formula": "(1) -> ((true)&(F ((((((((G (! (p0p0between0t29am50t29am2423))) | (G (p0p0between0t29am50t29am2423))) | (G (! (p0b0t29saturday)))) | (G (p0b0t29saturday))) | (G (! (p0b0t29sunday)))) | (G (p0b0t29sunday))) | (G (! (p0p0between0t29pm70t29pm8)))) | (G (p0p0between0t29pm70t29pm8)))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_7",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X ((g_0) & (g_1)))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "ltl2dba_alpha12",
+        "inputs": [
+            "q",
+            "p"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((F (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X (((p) & (q)) & (X ((p) & (q))))))))))))))))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dpa12",
+        "inputs": [
+            "b",
+            "a"
+        ],
+        "outputs": [
+            "p3",
+            "p2",
+            "p1",
+            "p0"
+        ],
+        "formula": "(1) -> ((G (((((((p0) & (! (p1))) & (! (p2))) & (! (p3))) | ((((! (p0)) & (p1)) & (! (p2))) & (! (p3)))) | ((((! (p0)) & (! (p1))) & (p2)) & (! (p3)))) | ((((! (p0)) & (! (p1))) & (! (p2))) & (p3))))&(((F (G (b))) & (G (F (a)))) <-> ((G (F (p0))) | ((F (G (! (p1)))) & (G (F (p2)))))))"
+    },
+    {
+        "name": "ltl2dba_theta16",
+        "inputs": [
+            "r",
+            "q",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11",
+            "p_12",
+            "p_13",
+            "p_14",
+            "p_15"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((q) & (G (! (r))))) & (G ((((((((((((((((F (p_0)) & (F (p_1))) & (F (p_2))) & (F (p_3))) & (F (p_4))) & (F (p_5))) & (F (p_6))) & (F (p_7))) & (F (p_8))) & (F (p_9))) & (F (p_10))) & (F (p_11))) & (F (p_12))) & (F (p_13))) & (F (p_14))) & (F (p_15))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_8",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X ((g_0) & (g_1))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "ltl2dba_U125",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9",
+            "p_10",
+            "p_11",
+            "p_12",
+            "p_13",
+            "p_14",
+            "p_15",
+            "p_16",
+            "p_17",
+            "p_18",
+            "p_19",
+            "p_20",
+            "p_21",
+            "p_22",
+            "p_23",
+            "p_24"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((((((((((((((((((((p_0) U (p_1)) U (p_2)) U (p_3)) U (p_4)) U (p_5)) U (p_6)) U (p_7)) U (p_8)) U (p_9)) U (p_10)) U (p_11)) U (p_12)) U (p_13)) U (p_14)) U (p_15)) U (p_16)) U (p_17)) U (p_18)) U (p_19)) U (p_20)) U (p_21)) U (p_22)) U (p_23)) U (p_24)) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "ltl2dba_Q10",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((((((G (p_1)) | (F (p_0))) & ((G (p_2)) | (F (p_1)))) & ((G (p_3)) | (F (p_2)))) & ((G (p_4)) | (F (p_3)))) & ((G (p_5)) | (F (p_4)))) & ((G (p_6)) | (F (p_5)))) & ((G (p_7)) | (F (p_6)))) & ((G (p_8)) | (F (p_7)))) & ((G (p_9)) | (F (p_8)))) & (F (p_9))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "lilydemo22",
+        "inputs": [
+            "ws",
+            "goup",
+            "godown"
+        ],
+        "outputs": [
+            "ss"
+        ],
+        "formula": "((! (godown))&(! (goup))&(! (ws))&(G ((! (godown)) | (! (goup))))&(G (F (! (ws))))&(G (((! (ws)) & (ss)) -> (X (! (ws)))))&(G ((ws) -> (X ((! (ws)) | (X ((! (ws)) | (X ((! (ws)) | (X (! (ws)))))))))))) -> ((G ((! (ws)) | (X (! (ss)))))&(G ((goup) -> (F (! (ss)))))&(G ((godown) -> (F (ss)))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_9",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X (X ((g_0) & (g_1)))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "abcg_arbiter1",
+        "inputs": [
+            "r_0"
+        ],
+        "outputs": [
+            "g_0",
+            "c_0",
+            "b_0",
+            "a_0"
+        ],
+        "formula": "(1) -> ((true)&(((! (g_0)) U (r_0)) | (G (! (g_0))))&(G (((g_0) & (X ((! (r_0)) & (! (g_0))))) -> (X (((! (g_0)) U (r_0)) | (G (! (g_0)))))))&(G (((g_0) & (G (! (r_0)))) -> (F (! (g_0)))))&(G ((r_0) -> (F (g_0))))&(G ((a_0) <-> (X (b_0))))&(G ((b_0) <-> (X (c_0))))&(G ((c_0) <-> (X (g_0)))))"
+    },
+    {
+        "name": "ltl2dba_R8",
+        "inputs": [
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> (((((((((((G (F (p_0))) | (F (G (p_1)))) & ((G (F (p_1))) | (F (G (p_2))))) & ((G (F (p_2))) | (F (G (p_3))))) & ((G (F (p_3))) | (F (G (p_4))))) & ((G (F (p_4))) | (F (G (p_5))))) & ((G (F (p_5))) | (F (G (p_6))))) & ((G (F (p_6))) | (F (G (p_7))))) & (G (F (p_7)))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_10",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X (X (X ((g_0) & (g_1))))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "simple_arbiter_unreal13_1",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1",
+            "g_2"
+        ],
+        "formula": "(1) -> ((G (((! (g_0)) & (! (g_1))) | (((! (g_0)) | (! (g_1))) & (! (g_2)))))&(G (((r_0) & (X (r_1))) -> (X ((g_0) & (g_1)))))&(G (((r_0) & (X (r_2))) -> (X ((g_0) & (g_2)))))&(G (((r_1) & (X (r_2))) -> (X ((g_1) & (g_2)))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_2) -> (F (g_2)))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_11",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X (X (X (X ((g_0) & (g_1)))))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "simple_arbiter_unreal23",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1",
+            "g_2"
+        ],
+        "formula": "(1) -> ((G (((! (g_0)) & (! (g_1))) | (((! (g_0)) | (! (g_1))) & (! (g_2)))))&(G (((r_0) & (X (r_1))) -> (F ((g_0) & (g_1)))))&(G (((r_0) & (X (r_2))) -> (F ((g_0) & (g_2)))))&(G (((r_1) & (X (r_2))) -> (F ((g_1) & (g_2)))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_2) -> (F (g_2)))))"
+    },
+    {
+        "name": "simple_arbiter5",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3",
+            "r_4"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1",
+            "g_2",
+            "g_3",
+            "g_4"
+        ],
+        "formula": "(1) -> ((G (((((! (g_0)) & (! (g_1))) & (! (g_2))) & ((! (g_3)) | (! (g_4)))) | (((((! (g_0)) & (! (g_1))) | (((! (g_0)) | (! (g_1))) & (! (g_2)))) & (! (g_3))) & (! (g_4)))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_2) -> (F (g_2))))&(G ((r_3) -> (F (g_3))))&(G ((r_4) -> (F (g_4)))))"
+    },
+    {
+        "name": "example10a2",
+        "inputs": [
+            "r"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> ((G (((g) & (G (! (r)))) -> (F (! (g)))))&(G (((g) & (X ((! (r)) & (! (g))))) -> (X ((r) R (! (g))))))&((r) R (! (g)))&(G ((r) -> (F (g))))&((X (X (X (r)))) -> (X (X (X (G (((! (g)) & (X (g))) -> (X (X (g)))))))))&((X (X (X (! (r))))) -> (X (X (X (G (((! (g)) & (X (g))) -> (X (X (! (g)))))))))))"
+    },
+    {
+        "name": "ltl2dba_beta10",
+        "inputs": [
+            "q_0",
+            "q_1",
+            "q_2",
+            "q_3",
+            "q_4",
+            "q_5",
+            "q_6",
+            "q_7",
+            "q_8",
+            "q_9",
+            "p_0",
+            "p_1",
+            "p_2",
+            "p_3",
+            "p_4",
+            "p_5",
+            "p_6",
+            "p_7",
+            "p_8",
+            "p_9"
+        ],
+        "outputs": [
+            "acc"
+        ],
+        "formula": "(1) -> ((((F ((p_0) & (F ((p_1) & (F ((p_2) & (F ((p_3) & (F ((p_4) & (F ((p_5) & (F ((p_6) & (F ((p_7) & (F ((p_8) & (F (p_9)))))))))))))))))))) & (F ((q_0) & (F ((q_1) & (F ((q_2) & (F ((q_3) & (F ((q_4) & (F ((q_5) & (F ((q_6) & (F ((q_7) & (F ((q_8) & (F (q_9))))))))))))))))))))) <-> (G (F (acc)))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_12",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X (X (X (X (X ((g_0) & (g_1))))))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "detector_unreal4",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2",
+            "r_3"
+        ],
+        "outputs": [
+            "g"
+        ],
+        "formula": "(1) -> (((G ((((F (r_0)) & (F (r_1))) & (F (r_2))) & (F (r_3)))) <-> (G (F (g))))&(G ((((((((r_0) & (r_1)) -> (G (! (g)))) & (((r_0) & (r_2)) -> (G (! (g))))) & (((r_0) & (r_3)) -> (G (! (g))))) & (((r_1) & (r_2)) -> (G (! (g))))) & (((r_1) & (r_3)) -> (G (! (g))))) & (((r_2) & (r_3)) -> (G (! (g)))))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_13",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X (X (X (X (X (X ((g_0) & (g_1)))))))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "example83",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1",
+            "g_2"
+        ],
+        "formula": "(1) -> ((G (((! (g_0)) & (! (g_1))) | (((! (g_0)) | (! (g_1))) & (! (g_2)))))&(G ((((r_0) | (r_1)) | (r_2)) -> ((((r_0) & (X (g_0))) | ((r_1) & (X (g_1)))) | ((r_2) & (X (g_2))))))&(G (((g_0) & (! (r_0))) -> (X (! (g_0)))))&(G (((g_1) & (! (r_1))) -> (X (! (g_1)))))&(G (((g_2) & (! (r_2))) -> (X (! (g_2))))))"
+    },
+    {
+        "name": "shift12",
+        "inputs": [
+            "in_0",
+            "in_1",
+            "in_2",
+            "in_3",
+            "in_4",
+            "in_5",
+            "in_6",
+            "in_7",
+            "in_8",
+            "in_9",
+            "in_10",
+            "in_11"
+        ],
+        "outputs": [
+            "out_0",
+            "out_1",
+            "out_2",
+            "out_3",
+            "out_4",
+            "out_5",
+            "out_6",
+            "out_7",
+            "out_8",
+            "out_9",
+            "out_10",
+            "out_11"
+        ],
+        "formula": "(1) -> ((G ((in_0) <-> (out_1)))&(G ((in_1) <-> (out_2)))&(G ((in_2) <-> (out_3)))&(G ((in_3) <-> (out_4)))&(G ((in_4) <-> (out_5)))&(G ((in_5) <-> (out_6)))&(G ((in_6) <-> (out_7)))&(G ((in_7) <-> (out_8)))&(G ((in_8) <-> (out_9)))&(G ((in_9) <-> (out_10)))&(G ((in_10) <-> (out_11)))&(G ((in_11) <-> (out_0))))"
+    },
+    {
+        "name": "prioritized_arbiter_unreal12_14",
+        "inputs": [
+            "r_m",
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_m",
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G (F (! (r_m))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((! (g_m)) | (! (g_0))))&(G ((! (g_m)) | (! (g_1))))&(G (((r_0) & (X (r_1))) -> (X (X (X (X (X (X (X (X (X (X (X (X (X (X ((g_0) & (g_1))))))))))))))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_m) -> (X (((! (g_0)) & (! (g_1))) U (g_m))))))"
+    },
+    {
+        "name": "simple_arbiter_unreal13_2",
+        "inputs": [
+            "r_0",
+            "r_1",
+            "r_2"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1",
+            "g_2"
+        ],
+        "formula": "(1) -> ((G (((! (g_0)) & (! (g_1))) | (((! (g_0)) | (! (g_1))) & (! (g_2)))))&(G (((r_0) & (X (r_1))) -> (X (X ((g_0) & (g_1))))))&(G (((r_0) & (X (r_2))) -> (X (X ((g_0) & (g_2))))))&(G (((r_1) & (X (r_2))) -> (X (X ((g_1) & (g_2))))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1))))&(G ((r_2) -> (F (g_2)))))"
+    },
+    {
+        "name": "round_robin_arbiter2",
+        "inputs": [
+            "r_0",
+            "r_1"
+        ],
+        "outputs": [
+            "g_0",
+            "g_1"
+        ],
+        "formula": "((G ((((((((r_0) & (! (g_0))) -> (X (r_0))) & (((! (r_0)) & (g_0)) -> (X (! (r_0))))) & (F ((! (r_0)) | (! (g_0))))) & (((r_1) & (! (g_1))) -> (X (r_1)))) & (((! (r_1)) & (g_1)) -> (X (! (r_1))))) & (F ((! (r_1)) | (! (g_1))))))) -> ((G ((! (g_0)) | (! (g_1))))&(G ((r_0) -> (F (g_0))))&(G ((r_1) -> (F (g_1)))))"
+    }
+]

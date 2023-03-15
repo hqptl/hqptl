@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>6.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Util.fs" />
+    <Compile Include="ExplictTransitionSystem.fs" />
+    <Compile Include="BooleanPrograms.fs" />
+    <Compile Include="NuSMV.fs" />
+    <Compile Include="Translation.fs" />
+    <Compile Include="CommandLineParser.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FParsec" Version="1.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FsOmegaLib\FsOmegaLib.fsproj" />
+    <ProjectReference Include="..\HQPTL\HQPTL.fsproj" />
+  </ItemGroup>
+  <PropertyGroup>
+    <OtherFlags>$(OtherFlags) --warnon:1182</OtherFlags>
+  </PropertyGroup>
+</Project>

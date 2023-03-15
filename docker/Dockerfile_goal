@@ -1,0 +1,41 @@
+FROM alpine:3.17.2
+
+RUN apk update
+RUN apk upgrade
+RUN apk add bash
+RUN apk add alpine-sdk
+RUN apk add dotnet7-sdk
+RUN apk add openjdk11-jre
+
+######################### Download and build spot #########################
+WORKDIR /home
+RUN wget https://www.lrde.epita.fr/dload/spot/spot-2.11.4.tar.gz
+RUN tar -xf spot-2.11.4.tar.gz
+WORKDIR /home/spot-2.11.4
+
+RUN ./configure --disable-python 
+RUN make 
+##################################################
+
+######################### Copy and build HQPTL (Frontend and QPTLTrans) #########################
+COPY src /home/src
+
+WORKDIR /home/src/Frontend
+RUN dotnet build -c "release" -o ../../app
+WORKDIR /home/src/QPTLTrans
+RUN dotnet build -c "release" -o ../../app
+
+# Copy paths.json which points to local path of spot within the container
+COPY docker/paths.json /home/app/paths.json
+##################################################
+
+######################### Copy GOAL #########################
+COPY docker/goal /home/goal
+##################################################
+
+WORKDIR /home
+
+VOLUME ["/home/eval"]
+
+ENTRYPOINT ["/home/goal/gc"]
+

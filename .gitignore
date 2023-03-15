@@ -1,0 +1,5 @@
+.DS_Store
+*.hoa
+*.gs 
+*.txt
+app/
