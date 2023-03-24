@@ -1,0 +1,1 @@
+forall A. exists B. X (G ("x"_A <-> "y"_B))
