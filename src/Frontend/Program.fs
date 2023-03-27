@@ -30,7 +30,7 @@ open Util
 open ExplictTransitionSystem
 open CommandLineParser
 
-let readAndParseHanoiInstance (config : Configuration) systemInputPaths formulaInputPath  = 
+let readAndParseHanoiInstance (config : SolverConfiguration) systemInputPaths formulaInputPath  = 
     let propcontent =   
         try 
             File.ReadAllText formulaInputPath
@@ -57,7 +57,7 @@ let readAndParseHanoiInstance (config : Configuration) systemInputPaths formulaI
     let tsList = 
         tscontent
         |> List.map (fun x -> 
-            match FsOmegaLib.Conversion.AutomatonFromString.convertHoaStringToGNBA HQPTL.Util.DEBUG config.SolverConfig.MainPath config.SolverConfig.AutfiltPath Effort.LOW None x with 
+            match FsOmegaLib.Conversion.AutomatonFromString.convertHoaStringToGNBA HQPTL.Util.DEBUG config.MainPath config.AutfiltPath Effort.LOW None x with 
             | Success x -> x 
             | Fail msg -> raise <| FrontendException $"Failure when obtaining GNBA for system: %s{msg}"
             | Timeout -> raise <| FrontendException $"Timeout"
@@ -187,13 +187,9 @@ let main args =
                 | Result.Error e ->
                     raise <| FrontendException $"%s{e}"
 
-        let solverConfig = HQPTL.RunConfiguration.getConfig()
+        let config = HQPTL.RunConfiguration.getConfig()
 
-        let config = 
-            {
-                SolverConfig = solverConfig
-                Logger = fun _ _ -> ()
-            } 
+        HQPTL.Util.DEBUGPrintouts <- cmdArgs.DebugPrintouts
 
         let systemInputPaths, formulaInputPath = 
             match cmdArgs.InputFiles with 
@@ -217,7 +213,10 @@ let main args =
                 readAndParseExplicitInstance systemInputPaths formulaInputPath
                 |> Translation.convertExplictSystemInstanceToGNBA
 
+        HQPTL.Util.LOGGERn "Read, parsed, and converted input"
+
         if cmdArgs.WriteExplicitSystems then 
+            HQPTL.Util.LOGGER "Start writing explict-state system to disc..."
             // Write the converted explict state system to a file
             let systemOutputPaths, formulaOutputPath = 
                 match cmdArgs.ExplicitInstanceOutputFiles with 
@@ -236,6 +235,8 @@ let main args =
             let formulaString = HyperQPTL.print id formula
 
             writeFormulaAndSystemString systemOutputPaths formulaOutputPath tsStringList formulaString
+
+            HQPTL.Util.LOGGERn "Done"
 
         if cmdArgs.Verify then 
             try

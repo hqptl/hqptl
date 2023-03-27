@@ -39,12 +39,6 @@ type VerbosityLevel =
     | FOUR 
 
 
-type Configuration = 
-    {
-        SolverConfig : SolverConfiguration
-        Logger : list<VerbosityLevel> -> String -> unit
-    }
-
 let private parseConfigFile (s : string) =
     match JSON.Parser.parseJsonString s with 
     | Result.Error err -> raise <| AnalysisException $"Could not parse config file: %s{err}"

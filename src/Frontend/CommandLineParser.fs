@@ -34,6 +34,7 @@ type CommandLineArguments =
         WriteExplicitSystems : bool
         ExplicitInstanceOutputFiles : option<list<String> * String>
         Timeout : Option<int>
+        DebugPrintouts : bool
     }
 
     static member Default = 
@@ -44,6 +45,7 @@ type CommandLineArguments =
             WriteExplicitSystems = false
             ExplicitInstanceOutputFiles = None
             Timeout = None
+            DebugPrintouts = false
         }
 
 let rec private splitByPredicate (f : 'T -> bool) (xs : list<'T>) = 
@@ -121,7 +123,10 @@ let parseCommandLineArguments (args : list<String>) =
                                 try     
                                     let vl = System.Int32.Parse y
                                     parseArgumentsRec ys { opt with Timeout = Some vl }
-                                with _ -> Result.Error ("Unsupported timeout option: " + y)         
+                                with _ -> Result.Error ("Unsupported timeout option: " + y)
+
+                    | "--debug" -> 
+                        parseArgumentsRec xs { opt with DebugPrintouts = true }
 
                     | "--verify" -> 
                         parseArgumentsRec xs {opt with Verify = true}

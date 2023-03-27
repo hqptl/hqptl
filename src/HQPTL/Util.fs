@@ -24,8 +24,24 @@ open System.Collections.Generic
 exception AnalysisException of String 
 exception TimeoutException 
 
+
 /// If set to true, we raise exceptions which is useful for debugging. If not set, all exceptions will be caught
-let DEBUG = false
+let mutable DEBUG = false
+let mutable DEBUGPrintouts = false
+let mutable simplifySystem = true
+let mutable simplifyIntermediateGnba = true
+
+let LOGGER (s : String) = 
+    if DEBUGPrintouts then 
+        printf $"%s{s}"
+    else 
+        ()
+
+let LOGGERn (s : String) = 
+    if DEBUGPrintouts then 
+        printfn $"%s{s}"
+    else 
+        ()
 
 let rec cartesianProduct (LL: list<seq<'a>>) =
     match LL with
