@@ -91,10 +91,15 @@ module ExplictTransitionSystem =
                     APs = ts.APs
                     Edges =
                         ts.Edges
-                        |> Map.map (fun _ x ->
-                            x
+                        |> Map.map (fun s sucs ->
+                            let apEvalDnf : DNF<int> = 
+                                ts.ApEval.[s]
+                                |> List.mapi (fun i b -> if b then PL i else NL i)
+                                |> List.singleton 
+
+                            sucs
                             |> Set.toList
-                            |> List.map (fun t -> DNF.trueDNF, t)
+                            |> List.map (fun t -> apEvalDnf, t)
                             )
                 }
             InitialStates = ts.InitialStates
