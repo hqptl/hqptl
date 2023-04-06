@@ -71,7 +71,7 @@ For example, if `/usr/bin/autfilt` and `/usr/bin/ltl2tgba` are the *autfilt* and
 
 To test that the paths have been setup correctly, we can verify our first HyperQPTL property by running the following (from the main directory of this repository)
 ```shell
-app/Frontend --verify --explicit ./examples/example_system.txt ./examples/example_hyperqptl.txt
+app/Frontend --explicit ./examples/example_system.txt ./examples/example_hyperqptl.txt
 ```
 which should output `SAT`.
 
@@ -92,7 +92,7 @@ In this section, we first discuss the command-line options of the HQPTL-Frontend
 The HQPTL-Frontend supports several command-line options.
 We focus on the verification of explicit-state systems by calling
 ```
-app/Frontend --verify --explicit <systemPath(s)> <propPath>
+app/Frontend --explicit <systemPath(s)> <propPath>
 ```
 where `<systemPath(s)>` is either a single path to the system or multiple such paths and `<propPath>` is the path to the property.
 In case  `<systemPath(s)>` is only a single path, we use the system at this path to resolve all quantifiers. 
