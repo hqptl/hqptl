@@ -72,6 +72,9 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
 
         match lastQuantifier with
         | ExistsTrace pi  -> 
+            let sw = System.Diagnostics.Stopwatch()
+            sw.Start()
+
             let positiveAut = 
                 if possiblyNegatedAut.IsNegated then
                     Util.LOGGER $"Start automaton negation for \"exists %s{pi}\" ..."
@@ -88,15 +91,19 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
 
-            Util.LOGGERn $"Done"
+            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
             Util.LOGGER $"Start automaton-system-product for \"exists %s{pi}\" ..."
+            sw.Restart()
             let nextAut = constructAutomatonSystemProduct positiveAut tsMap.[pi] pi
-            Util.LOGGERn $"Done"
+            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
             generateAutomatonRec config tsMap remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = false}
             
         | ForallTrace pi -> 
+            let sw = System.Diagnostics.Stopwatch()
+            sw.Start()
+
             let negativeAut = 
                 if not possiblyNegatedAut.IsNegated then 
                     Util.LOGGER $"Start automaton negation for \"forall %s{pi}\" ..."
@@ -113,14 +120,18 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
 
-            Util.LOGGERn $"Done"
+            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
             Util.LOGGER $"Start automaton-system-product for \"forall %s{pi}\" ..."
+            sw.Restart()
             let nextAut = constructAutomatonSystemProduct negativeAut tsMap.[pi] pi
-            Util.LOGGERn $"Done"
+            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
             generateAutomatonRec config tsMap remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = true}
         | ExistsProp p ->
+            let sw = System.Diagnostics.Stopwatch()
+            sw.Start()
+
             let positiveAut = 
                 if possiblyNegatedAut.IsNegated then
                     Util.LOGGER $"Start automaton negation for \"E %s{p}\" ..."
@@ -137,16 +148,20 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
 
-            Util.LOGGERn $"Done"
+            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
 
             Util.LOGGER $"Start automaton-system-product for \"E %s{p}\" ..."
+            sw.Restart()
             let nextAut = projectAwayAP positiveAut p
-            Util.LOGGERn $"Done"
+            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
             generateAutomatonRec config tsMap remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = false}
             
         | ForallProp p ->
+            let sw = System.Diagnostics.Stopwatch()
+            sw.Start()
+
             let negativeAut = 
                 if not possiblyNegatedAut.IsNegated then 
                     Util.LOGGER $"Start automaton negation for \"A %s{p}\" ..."
@@ -163,11 +178,12 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
 
-            Util.LOGGERn $"Done"
+            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
             Util.LOGGER $"Start automaton-system-product for \"A %s{p}\" ..."
+            sw.Restart()
             let nextAut = projectAwayAP negativeAut p
-            Util.LOGGERn $"Done"
+            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
             generateAutomatonRec config tsMap remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = true}
 
@@ -188,6 +204,8 @@ let generateAutomaton (config : SolverConfiguration)  (tsmap : Map<TraceVariable
             formula
 
     Util.LOGGER $"Start LTL-to-NBA translation..."
+    let sw = System.Diagnostics.Stopwatch()
+    sw.Start()
 
     let aut =
         match FsOmegaLib.Conversion.LTLConversion.convertLTLtoGNBA Util.DEBUG config.MainPath config.Ltl2tgbaPath timeout body with 
@@ -195,7 +213,7 @@ let generateAutomaton (config : SolverConfiguration)  (tsmap : Map<TraceVariable
         | Fail err -> raise <| AnalysisException err 
         | Timeout -> raise TimeoutException
 
-    Util.LOGGERn $"Done"
+    Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
     generateAutomatonRec config tsmap quantifierPrefix {PossiblyNegatedAutomaton.Aut = aut; IsNegated = startWithNegated}
     
@@ -206,14 +224,18 @@ let modelCheck (config : SolverConfiguration)  (tsMap : Map<TraceVariable, GNBA<
         |> Map.map (fun _ gnba -> 
             if Util.simplifySystem then 
                 // We pass the gnba to spot to enable easy preprocessing 
+                
                 Util.LOGGER $"Start initial system simplification..."
+                let sw = System.Diagnostics.Stopwatch()
+                sw.Start()
+
                 let gnba' = 
                     match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.MainPath config.AutfiltPath (Effort.HIGH) None gnba with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
 
-                Util.LOGGERn $"Done"
+                Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
                 gnba'
             else 
@@ -230,6 +252,8 @@ let modelCheck (config : SolverConfiguration)  (tsMap : Map<TraceVariable, GNBA<
     assert (aut.APs.Length = 0)
 
     Util.LOGGER $"Start Emptiness Check..."
+    let sw = System.Diagnostics.Stopwatch()
+    sw.Start()
 
     let res = 
         match FsOmegaLib.Conversion.AutomataChecks.checkEmptiness Util.DEBUG config.MainPath config.AutfiltPath None aut with
@@ -241,6 +265,6 @@ let modelCheck (config : SolverConfiguration)  (tsMap : Map<TraceVariable, GNBA<
         | Fail err -> raise <| AnalysisException err
         | Timeout -> raise <| TimeoutException
 
-    Util.LOGGERn $"Done"
+    Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
     res 

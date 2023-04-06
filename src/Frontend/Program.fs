@@ -181,6 +181,10 @@ let private writeFormulaAndSystemString (systemOutputPaths: list<String>) formul
 [<EntryPoint>]
 let main args =
     try 
+        let swTotal = System.Diagnostics.Stopwatch()
+        swTotal.Start()
+
+
         let cmdArgs =
             match CommandLineParser.parseCommandLineArguments (Array.toList args) with
                 | Result.Ok x -> x
@@ -199,17 +203,15 @@ let main args =
 
         let tsList, formula = 
             match cmdArgs.InputType with 
-            | None -> 
-                raise <| FrontendException "Must specify input format and input files"
-            | Some HanoiSystem -> 
+            | HanoiSystem -> 
                 readAndParseHanoiInstance config systemInputPaths formulaInputPath 
-            | Some SymbolicSystem -> 
+            | SymbolicSystem -> 
                 readAndParseSymbolicInstance systemInputPaths formulaInputPath 
                 |> Translation.convertSymbolicSystemInstanceToGNBA
-            | Some BooleanProgramSystem -> 
+            | BooleanProgramSystem -> 
                 readAndParseBooleanProgramInstance systemInputPaths formulaInputPath
                 |> Translation.convertBooleanProgramInstanceToGNBA
-            | Some ExplictSystem -> 
+            | ExplictSystem -> 
                 readAndParseExplicitInstance systemInputPaths formulaInputPath
                 |> Translation.convertExplictSystemInstanceToGNBA
 
@@ -217,6 +219,9 @@ let main args =
 
         if cmdArgs.WriteExplicitSystems then 
             HQPTL.Util.LOGGER "Start writing explict-state system to disc..."
+            let sw = System.Diagnostics.Stopwatch()
+            sw.Start()
+
             // Write the converted explict state system to a file
             let systemOutputPaths, formulaOutputPath = 
                 match cmdArgs.ExplicitInstanceOutputFiles with 
@@ -236,7 +241,7 @@ let main args =
 
             writeFormulaAndSystemString systemOutputPaths formulaOutputPath tsStringList formulaString
 
-            HQPTL.Util.LOGGERn "Done"
+            HQPTL.Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
         if cmdArgs.Verify then 
             try
@@ -267,6 +272,8 @@ let main args =
             with 
             | HQPTL.Util.TimeoutException -> 
                 printfn "TIMEOUT"
+
+        HQPTL.Util.LOGGERn $"Total Time: %i{swTotal.ElapsedMilliseconds} ms (%.4f{double(swTotal.ElapsedMilliseconds) / 1000.0} s)"
      
         0
     with 

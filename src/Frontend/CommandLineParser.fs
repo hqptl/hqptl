@@ -28,24 +28,26 @@ type ExecutionMode =
 
 type CommandLineArguments = 
     {
-        InputType : option<ExecutionMode>
+        InputType : ExecutionMode
         InputFiles : option<list<String> * String>
         Verify : bool
         WriteExplicitSystems : bool
         ExplicitInstanceOutputFiles : option<list<String> * String>
         Timeout : Option<int>
         DebugPrintouts : bool
+        ComputeWitnessForOuterTraces : bool
     }
 
     static member Default = 
         {
-            InputType = None 
+            InputType = HanoiSystem 
             InputFiles = None
-            Verify = false
+            Verify = true
             WriteExplicitSystems = false
             ExplicitInstanceOutputFiles = None
             Timeout = None
             DebugPrintouts = false
+            ComputeWitnessForOuterTraces = false
         }
 
 let rec private splitByPredicate (f : 'T -> bool) (xs : list<'T>) = 
@@ -63,47 +65,16 @@ let parseCommandLineArguments (args : list<String>) =
 
         match args with 
             | [] -> Result.Ok opt
-            | x::xs -> 
+            | x :: xs -> 
                 match x with 
                     | "--hanoi" -> 
-                        let args, ys = splitByPredicate (fun (x : String) -> x.[0] = '-') xs
-            
-                        if List.length args < 2 then 
-                            Result.Error "Option --hanoi must be followed by at least two arguments"
-                        else 
-                            let propertyFile = args[args.Length - 1]
-                            let systemFiles = args[0..args.Length - 2]
-                            parseArgumentsRec ys {opt with InputType = Some HanoiSystem; InputFiles = (systemFiles, propertyFile)  |> Some}
-
+                        parseArgumentsRec xs {opt with InputType = HanoiSystem}
                     | "--symbolic" -> 
-                        let args, ys = splitByPredicate (fun (x : String) -> x.[0] = '-') xs
-            
-                        if List.length args < 2 then 
-                            Result.Error "Option --symbolic must be followed by at least two arguments"
-                        else 
-                            let propertyFile = args[args.Length - 1]
-                            let systemFiles = args[0..args.Length - 2]
-                            parseArgumentsRec ys {opt with InputType = Some SymbolicSystem; InputFiles = (systemFiles, propertyFile)  |> Some}
-
+                        parseArgumentsRec xs {opt with InputType = SymbolicSystem}
                     | "--explicit" -> 
-                        let args, ys = splitByPredicate (fun (x : String) -> x.[0] = '-') xs
-            
-                        if List.length args < 2 then 
-                            Result.Error "Option --explicit must be followed by at least two arguments"
-                        else 
-                            let propertyFile = args[args.Length - 1]
-                            let systemFiles = args[0..args.Length - 2]
-                            parseArgumentsRec ys {opt with InputType = Some ExplictSystem; InputFiles = (systemFiles, propertyFile)  |> Some}
-
+                        parseArgumentsRec xs {opt with InputType = ExplictSystem}
                     | "--bp" -> 
-                        let args, ys = splitByPredicate (fun (x : String) -> x.[0] = '-') xs
-            
-                        if List.length args < 2 then 
-                            Result.Error "Option --bp must be followed by at least two arguments"
-                        else 
-                            let propertyFile = args[args.Length - 1]
-                            let systemFiles = args[0..args.Length - 2]
-                            parseArgumentsRec ys {opt with InputType = Some BooleanProgramSystem; InputFiles = (systemFiles, propertyFile)  |> Some}
+                        parseArgumentsRec xs {opt with InputType = BooleanProgramSystem}
                     | "-o" -> 
                         let args, ys = splitByPredicate (fun (x : String) -> x.[0] = '-') xs
 
@@ -127,11 +98,25 @@ let parseCommandLineArguments (args : list<String>) =
 
                     | "--debug" -> 
                         parseArgumentsRec xs { opt with DebugPrintouts = true }
-
-                    | "--verify" -> 
-                        parseArgumentsRec xs {opt with Verify = true}
-                    
-                    | _ -> Result.Error ("Option " + x + " is not supported" )
+                    | "--no-verification" -> 
+                        parseArgumentsRec xs {opt with Verify = false}
+                    | "--witness" -> 
+                        parseArgumentsRec xs {opt with ComputeWitnessForOuterTraces = true}
+                    | s when s <> "" && s.Trim().StartsWith "-" -> 
+                        Result.Error ("Option " + s + " is not supported" )
+                    | x -> 
+                        // When no option is given, we assume that this is the input 
+                        if opt.InputFiles.IsSome then 
+                            Result.Error "Input files cannot be given more than once"
+                        else 
+                            let args, ys = splitByPredicate (fun (y : String) -> y.[0] = '-') (x :: xs)
+                
+                            if List.length args < 2 then 
+                                Result.Error "The input must consist of at least two arguments"
+                            else 
+                                let propertyFile = args[args.Length - 1]
+                                let systemFiles = args[0..args.Length - 2]
+                                parseArgumentsRec ys {opt with InputFiles = (systemFiles, propertyFile) |> Some}
         
     parseArgumentsRec args CommandLineArguments.Default
                                 
