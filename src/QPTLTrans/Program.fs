@@ -33,13 +33,7 @@ let private run (args: array<string>) =
             | Result.Error e ->
                    raise <| AnalysisException $"%s{e}"
                    
-    let solverConfig = HQPTL.RunConfiguration.getConfig()
-
-    let config = 
-        {
-            SolverConfig = solverConfig
-            Logger = fun _ _ -> ()
-        }
+    let config = HQPTL.RunConfiguration.getConfig()
 
     match cmdArgs.ExecMode with 
         | None -> 
