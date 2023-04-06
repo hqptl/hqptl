@@ -18,14 +18,17 @@
 module HQPTL.ModelChecking
 
 open FsOmegaLib.LTL
+open FsOmegaLib.SAT
 open FsOmegaLib.GNBA
+open FsOmegaLib.NBA
 open FsOmegaLib.Conversion
 
 open Util
 open RunConfiguration
 open HyperQPTL
+open AutomataUtil
 
-let private constructAutomatonSystemProduct (aut : GNBA<int, HyperQPTLAtom<'L>>) (ts : GNBA<int, 'L>) (index : TraceVariable) =
+let private constructAutomatonSystemProduct (aut : GNBA<int, HyperQPTLAtom<'L>>) (ts : GNBA<int, 'L>) (index : TraceVariable) (project : bool) =
     let tsGNBA =
         ts
         |> GNBA.mapAPs (fun x -> TraceAtom(x, index))
@@ -37,10 +40,15 @@ let private constructAutomatonSystemProduct (aut : GNBA<int, HyperQPTLAtom<'L>>)
             | TraceAtom (_, i) -> i <> index
             | PropAtom _ -> true
         )
-    
-    (aut, tsGNBA)
-    ||> AutomataUtil.constructConjunctionOfGnbaPair 
-    |> GNBA.projectToTargetAPs newAPs
+
+    let product =
+        (aut, tsGNBA)
+        ||> AutomataUtil.constructConjunctionOfGnbaPair 
+
+    if project then
+        GNBA.projectToTargetAPs newAPs product 
+    else 
+        product
     
     
 let private projectAwayAP (aut : GNBA<int, HyperQPTLAtom<'L>>) (index : PropVariable) =
@@ -60,9 +68,9 @@ type PossiblyNegatedAutomaton<'L when 'L: comparison> =
         Aut : GNBA<int, HyperQPTLAtom<'L>>
         IsNegated : bool 
     }
-    
-let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map<TraceVariable, GNBA<int, 'L>>) (quantifierPrefix : list<HyperQPTLQuantifier>) (possiblyNegatedAut : PossiblyNegatedAutomaton<'L>) = 
-    
+
+/// The trace variables in nonProjectedTraces will remain within the automataon language, i.e., they will not be projected away
+let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map<TraceVariable, GNBA<int, 'L>>) (nonProjectedTraces : Set<TraceVariable>) (quantifierPrefix : list<HyperQPTLQuantifier>) (possiblyNegatedAut : PossiblyNegatedAutomaton<'L>) = 
     if quantifierPrefix.IsEmpty then
         possiblyNegatedAut   
     else
@@ -95,10 +103,10 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
 
             Util.LOGGER $"Start automaton-system-product for \"exists %s{pi}\" ..."
             sw.Restart()
-            let nextAut = constructAutomatonSystemProduct positiveAut tsMap.[pi] pi
+            let nextAut = constructAutomatonSystemProduct positiveAut tsMap.[pi] pi (Set.contains pi nonProjectedTraces |> not)
             Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
-            generateAutomatonRec config tsMap remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = false}
+            generateAutomatonRec config tsMap nonProjectedTraces remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = false}
             
         | ForallTrace pi -> 
             let sw = System.Diagnostics.Stopwatch()
@@ -124,10 +132,10 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
 
             Util.LOGGER $"Start automaton-system-product for \"forall %s{pi}\" ..."
             sw.Restart()
-            let nextAut = constructAutomatonSystemProduct negativeAut tsMap.[pi] pi
+            let nextAut = constructAutomatonSystemProduct negativeAut tsMap.[pi] pi (Set.contains pi nonProjectedTraces |> not)
             Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
-            generateAutomatonRec config tsMap remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = true}
+            generateAutomatonRec config tsMap nonProjectedTraces remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = true}
         | ExistsProp p ->
             let sw = System.Diagnostics.Stopwatch()
             sw.Start()
@@ -156,7 +164,7 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
             let nextAut = projectAwayAP positiveAut p
             Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
-            generateAutomatonRec config tsMap remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = false}
+            generateAutomatonRec config tsMap nonProjectedTraces remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = false}
             
         | ForallProp p ->
             let sw = System.Diagnostics.Stopwatch()
@@ -185,10 +193,10 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
             let nextAut = projectAwayAP negativeAut p
             Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
-            generateAutomatonRec config tsMap remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = true}
+            generateAutomatonRec config tsMap nonProjectedTraces remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = true}
 
 
-let generateAutomaton (config : SolverConfiguration)  (tsmap : Map<TraceVariable, GNBA<int, 'L>>) (quantifierPrefix : list<HyperQPTLQuantifier>) (formula : LTL<HyperQPTLAtom<'L>>) (timeout: int option) = 
+let generateAutomaton (config : SolverConfiguration)  (tsmap : Map<TraceVariable, GNBA<int, 'L>>) (nonProjectedTraces: Set<TraceVariable>) (quantifierPrefix : list<HyperQPTLQuantifier>) (formula : LTL<HyperQPTLAtom<'L>>) (timeout: int option) = 
     let startWithNegated =
         if List.isEmpty quantifierPrefix then 
             false 
@@ -215,10 +223,9 @@ let generateAutomaton (config : SolverConfiguration)  (tsmap : Map<TraceVariable
 
     Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
-    generateAutomatonRec config tsmap quantifierPrefix {PossiblyNegatedAutomaton.Aut = aut; IsNegated = startWithNegated}
+    generateAutomatonRec config tsmap nonProjectedTraces quantifierPrefix {PossiblyNegatedAutomaton.Aut = aut; IsNegated = startWithNegated}
     
-let modelCheck (config : SolverConfiguration)  (tsMap : Map<TraceVariable, GNBA<int, 'L>>) (hyperqptl : HyperQPTL<'L>) timeout =
-
+let modelCheck (config : SolverConfiguration) (tsMap : Map<TraceVariable, GNBA<int, 'L>>) (hyperqptl : HyperQPTL<'L>) (computeWitness : bool) timeout =
     let tsMapSimplified = 
         tsMap
         |> Map.map (fun _ gnba -> 
@@ -242,29 +249,106 @@ let modelCheck (config : SolverConfiguration)  (tsMap : Map<TraceVariable, GNBA<
                 gnba
             )
 
+    // We determine which traces we do not project away to compute witnesses 
+    // This is the largest prefix of the same qunatfier-type of the prefix 
+    let nonProjectedTraces : Set<TraceVariable> = 
+        if computeWitness |> not then 
+            Set.empty
+        else 
+            let l =
+                hyperqptl.QuantifierPrefix
+                |> List.choose (function 
+                    | ForallProp _ | ExistsProp _ -> None 
+                    | ForallTrace pi -> Some (true, pi)
+                    | ExistsTrace pi -> Some (false, pi)
+                    )
+
+            assert (List.isEmpty l |> not)
+
+            // Find the first index that differs from the quantifiertype of the first variable (head of l)
+            let a = 
+                l 
+                |> List.tryFindIndex (fun (y: bool * TraceVariable) -> fst y <> fst (List.head l))
+                |> Option.defaultValue (List.length l)
+                |> fun x -> x - 1
+
+            l[..a] 
+            |> List.map snd 
+            |> set
 
 
-
-    let possiblyNegatedAut = generateAutomaton config tsMapSimplified hyperqptl.QuantifierPrefix hyperqptl.LTLMatrix timeout
+    let possiblyNegatedAut = generateAutomaton config tsMapSimplified nonProjectedTraces hyperqptl.QuantifierPrefix hyperqptl.LTLMatrix timeout
     let aut = possiblyNegatedAut.Aut
     let isNegated = possiblyNegatedAut.IsNegated
-    
-    assert (aut.APs.Length = 0)
+   
+    assert (computeWitness || List.isEmpty aut.APs)
 
-    Util.LOGGER $"Start Emptiness Check..."
-    let sw = System.Diagnostics.Stopwatch()
-    sw.Start()
+    if not computeWitness then 
+        // Just check for emptiness, we use spot for this
 
-    let res = 
-        match FsOmegaLib.Conversion.AutomataChecks.checkEmptiness Util.DEBUG config.MainPath config.AutfiltPath None aut with
-        | Success isEmpty ->
-            if isNegated then
-                isEmpty
-            else
-                not isEmpty
-        | Fail err -> raise <| AnalysisException err
-        | Timeout -> raise <| TimeoutException
+        Util.LOGGER $"Start Emptiness Check..."
+        let sw = System.Diagnostics.Stopwatch()
+        sw.Start()
 
-    Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+        let res = 
+            match FsOmegaLib.Conversion.AutomataChecks.checkEmptiness Util.DEBUG config.MainPath config.AutfiltPath None aut with
+            | Success isEmpty ->
+                if isNegated then
+                    isEmpty
+                else
+                    not isEmpty
+            | Fail err -> raise <| AnalysisException err
+            | Timeout -> raise <| TimeoutException
 
-    res 
+        Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+
+        res, None
+
+    else 
+        Util.LOGGER $"Start GNBA-to-NBA translation..."
+        let sw = System.Diagnostics.Stopwatch()
+        sw.Start()
+
+        let nba = 
+            match FsOmegaLib.Conversion.AutomatonConversions.convertToNBA Util.DEBUG config.MainPath config.AutfiltPath Effort.HIGH None aut with
+            | Success nba -> nba
+            | Fail err -> raise <| AnalysisException err
+            | Timeout -> raise <| TimeoutException
+
+        Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+
+        Util.LOGGER $"Start lasso search in NBA..."
+        sw.Restart()
+        let res = AutomataUtil.shortestAcceptingPaths nba
+        Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+
+        match res with 
+        | None -> 
+            // The automataon is empty 
+            (if isNegated then true else false), None 
+        | Some lasso -> 
+
+            // We can assume that each NF in this lasso is SAT
+            let makeDNFExplict (d : DNF<int>) = 
+                // We take the smallest literal for printing
+                let f = List.minBy List.length d 
+
+                f 
+                |> List.map (fun lit -> 
+                    let ap = 
+                        match nba.APs.[Literal.getValue lit] with 
+                        | PropAtom _ -> raise <| AnalysisException $"Encountered a proptial AP in the lasso. "
+                        | TraceAtom (a, pi) -> a, pi
+                    
+                    let isPos = match lit with PL _ -> true | NL _ -> false
+                    isPos, ap 
+                    )
+
+            let modLasso = 
+                {
+                    Lasso.Prefix = lasso.Prefix |> List.map makeDNFExplict
+                    Loop = lasso.Loop |> List.map makeDNFExplict
+                }
+
+            // The automaton is non-empty
+            (if isNegated then false else true), (Some modLasso) 

@@ -130,7 +130,7 @@ let readAndParseBooleanProgramInstance systemInputPaths formulaInputPath =
     programList, formula
 
 let readAndParseExplicitInstance systemInputPaths formulaInputPath =
-    let programList = 
+    let explicitTsList = 
         systemInputPaths 
         |> List.map (fun x -> 
                 try 
@@ -159,7 +159,7 @@ let readAndParseExplicitInstance systemInputPaths formulaInputPath =
         | Result.Error err -> 
             raise <| FrontendException $"The HyperQPTL formula could not be parsed: %s{err}"
 
-    programList, formula
+    explicitTsList, formula
 
 
 let private writeFormulaAndSystemString (systemOutputPaths: list<String>) formulaOutputPath (tsStringList : list<String>) (formulaString : String) =
@@ -263,12 +263,41 @@ let main args =
                         |> List.map (fun x -> x, tsList.[0])
                         |> Map.ofList
                 
-                let res = HQPTL.ModelChecking.modelCheck config tsMap formula cmdArgs.Timeout
+                let res, lasso = HQPTL.ModelChecking.modelCheck config tsMap formula cmdArgs.ComputeWitnessForOuterTraces cmdArgs.Timeout
 
                 if res then 
                     printfn "SAT"
                 else
                     printfn "UNSAT"
+
+
+                if cmdArgs.ComputeWitnessForOuterTraces then 
+                    match lasso with 
+                    | None -> 
+                        //printfn "Could not compute a Lasso"
+                        ()
+                    | Some lasso -> 
+                        // We can assume that each DNF in this lasso is SAT
+
+                        let printList (l : list<list<bool * (String * TraceVariable)>>) = 
+                            l 
+                            |> List.map (fun a -> 
+                                a 
+                                |> List.map (fun (b, (a, pi)) -> 
+                                    let s = "\"" + a + "\"_" + pi
+                                    if b then s else "!" + s
+                                    )
+                                |> Util.combineStringsWithSeperator " & "
+                                |> fun s -> "(" + s + ")"
+                                )
+                            |> Util.combineStringsWithSeperator " "
+                            |> fun x -> "[" + x + "]"
+
+                        let prefixString = printList lasso.Prefix
+                        let loopString = printList lasso.Loop
+
+                        printfn $"%s{prefixString}"
+                        printfn $"%s{loopString}"
             with 
             | HQPTL.Util.TimeoutException -> 
                 printfn "TIMEOUT"

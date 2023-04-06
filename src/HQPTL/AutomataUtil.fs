@@ -15,16 +15,17 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 *)
 
-module internal HQPTL.AutomataUtil
+module HQPTL.AutomataUtil
 
 open System.Collections.Generic
 
 open FsOmegaLib.SAT
 open FsOmegaLib.AutomatonSkeleton
 open FsOmegaLib.GNBA
+open FsOmegaLib.NBA
 
 
-let constructConjunctionOfGNBAs (autList : list<GNBA<int, 'L>>) = 
+let internal constructConjunctionOfGNBAs (autList : list<GNBA<int, 'L>>) = 
     let autList = GNBA.bringToSameAPs autList
 
     let sumOfAccSets = 
@@ -95,7 +96,7 @@ let constructConjunctionOfGNBAs (autList : list<GNBA<int, 'L>>) =
     |> GNBA.convertStatesToInt
 
 
-let constructConjunctionOfGnbaPair (aut1 : GNBA<int, 'L>) (aut2 : GNBA<int, 'L>) = 
+let internal constructConjunctionOfGnbaPair (aut1 : GNBA<int, 'L>) (aut2 : GNBA<int, 'L>) = 
     let aut1, aut2 = GNBA.bringPairToSameAPs aut1 aut2
 
     let initStates = Seq.allPairs aut1.InitialStates aut2.InitialStates
@@ -147,3 +148,41 @@ let constructConjunctionOfGnbaPair (aut1 : GNBA<int, 'L>) (aut2 : GNBA<int, 'L>)
         NumberOfAcceptingSets = aut1.NumberOfAcceptingSets + aut2.NumberOfAcceptingSets
     }
     |> GNBA.convertStatesToInt
+
+
+
+type Lasso<'L> = 
+    {
+        Prefix : list<'L>
+        Loop : list<'L>
+    }
+
+module Lasso = 
+    let length (lasso : Lasso<'L>)= 
+        lasso.Prefix.Length + lasso.Loop.Length
+
+let internal shortestAcceptingPaths (nba: NBA<'T, 'L>) = 
+    let satEdges = 
+        nba.Edges
+        |> Map.map (fun _ l -> 
+            l |> List.filter (fun (g, _) -> DNF.isSat g)
+            )
+
+    let res = GraphUtil.shortestPathsBetweenAllPairs nba.States (fun x -> satEdges.[x]) false 
+
+    let a = 
+        Seq.allPairs nba.InitialStates nba.AcceptingStates
+        |> Seq.filter (fun (init, acc) -> (res.ContainsKey (init, acc) || init = acc) && res.ContainsKey (acc, acc))
+        |> Seq.map (fun (init, acc) -> 
+            {
+                Lasso.Prefix = if init = acc then [] else res.[init, acc] |> fst; 
+                Loop = res.[acc, acc] |> fst
+            }
+            )
+    
+    if Seq.isEmpty a then 
+        None 
+    else 
+        a 
+        |> Seq.minBy Lasso.length
+        |> Some
