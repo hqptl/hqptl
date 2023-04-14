@@ -43,7 +43,7 @@ let private run (args: array<string>) =
             | ConvertQPTLToGNBA path ->
                 try 
                     let formula = QPTLTranslationUtil.readAndParseQPTL path
-                    let gnba = QPTLTranslationUtil.convertQPTLToGNBA config formula cmdArgs.Timeout 
+                    let gnba = QPTLTranslationUtil.convertQPTLToGNBA config formula cmdArgs.UseOwl cmdArgs.Timeout 
                     let s = GNBA.toHoaString string string gnba
 
                     match cmdArgs.Output with 
@@ -60,7 +60,7 @@ let private run (args: array<string>) =
             | ConvertQPTLToNBA path ->
                 try 
                     let formula = QPTLTranslationUtil.readAndParseQPTL path
-                    let nba = QPTLTranslationUtil.convertQPTLToNBA config formula cmdArgs.Timeout 
+                    let nba = QPTLTranslationUtil.convertQPTLToNBA config formula cmdArgs.UseOwl cmdArgs.Timeout 
                     let s = NBA.toHoaString string string nba
 
                     match cmdArgs.Output with 

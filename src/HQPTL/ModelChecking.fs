@@ -87,14 +87,14 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
                 if possiblyNegatedAut.IsNegated then
                     Util.LOGGER $"Start automaton negation for \"exists %s{pi}\" ..."
                     // Negate
-                    match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.MainPath config.AutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
+                    match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
                 else 
                     Util.LOGGER $"Start automaton simplification for \"exists %s{pi}\" ..."
                     // Pass into spot (without any changes to the language) to enable easy simplication
-                    match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.MainPath config.AutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
+                    match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
@@ -116,14 +116,14 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
                 if not possiblyNegatedAut.IsNegated then 
                     Util.LOGGER $"Start automaton negation for \"forall %s{pi}\" ..."
                     // Negate
-                    match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.MainPath config.AutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
+                    match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
                 else 
                     Util.LOGGER $"Start automaton simplification for \"forall %s{pi}\" ..."
                     // Pass into spot (without any changes to the language) to enable easy simplication
-                    match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.MainPath config.AutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
+                    match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
@@ -144,14 +144,14 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
                 if possiblyNegatedAut.IsNegated then
                     Util.LOGGER $"Start automaton negation for \"E %s{p}\" ..."
                     // Negate
-                    match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.MainPath config.AutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
+                    match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
                 else 
                     Util.LOGGER $"Start automaton simplification for \"E %s{p}\" ..."
                     // Pass into spot (without any changes to the language) to enable easy simplication
-                    match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.MainPath config.AutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
+                    match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
@@ -174,14 +174,14 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
                 if not possiblyNegatedAut.IsNegated then 
                     Util.LOGGER $"Start automaton negation for \"A %s{p}\" ..."
                     // Negate
-                    match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.MainPath config.AutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
+                    match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
                 else 
                     Util.LOGGER $"Start automaton simplification for \"A %s{p}\" ..."
                     // Pass into spot (without any changes to the language) to enable easy simplication
-                    match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.MainPath config.AutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
+                    match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
@@ -196,7 +196,7 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
             generateAutomatonRec config tsMap nonProjectedTraces remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = true}
 
 
-let generateAutomaton (config : SolverConfiguration)  (tsmap : Map<TraceVariable, GNBA<int, 'L>>) (nonProjectedTraces: Set<TraceVariable>) (quantifierPrefix : list<HyperQPTLQuantifier>) (formula : LTL<HyperQPTLAtom<'L>>) (timeout: int option) = 
+let generateAutomaton (config : SolverConfiguration) (tsmap : Map<TraceVariable, GNBA<int, 'L>>) (nonProjectedTraces: Set<TraceVariable>) (quantifierPrefix : list<HyperQPTLQuantifier>) (formula : LTL<HyperQPTLAtom<'L>>) (useOwl : bool) (timeout: int option) = 
     let startWithNegated =
         if List.isEmpty quantifierPrefix then 
             false 
@@ -216,16 +216,23 @@ let generateAutomaton (config : SolverConfiguration)  (tsmap : Map<TraceVariable
     sw.Start()
 
     let aut =
-        match FsOmegaLib.Conversion.LTLConversion.convertLTLtoGNBA Util.DEBUG config.MainPath config.Ltl2tgbaPath timeout body with 
-        | Success aut -> aut 
-        | Fail err -> raise <| AnalysisException err 
-        | Timeout -> raise TimeoutException
+        if useOwl |> not then 
+            match FsOmegaLib.Conversion.LTLConversion.convertLTLtoGNBA Util.DEBUG config.GetMainPath config.GetLtl2tgbaPath timeout body with 
+            | Success aut -> aut 
+            | Fail err -> raise <| AnalysisException err 
+            | Timeout -> raise TimeoutException
+        else 
+            // Use Owl for the Ltl-GNBA translation
+            match FsOmegaLib.Conversion.LTLConversion.convertLTLtoGNBAOwl Util.DEBUG config.GetMainPath config.GetOwlPath timeout body with 
+            | Success aut -> aut 
+            | Fail err -> raise <| AnalysisException err 
+            | Timeout -> raise TimeoutException
 
     Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
 
     generateAutomatonRec config tsmap nonProjectedTraces quantifierPrefix {PossiblyNegatedAutomaton.Aut = aut; IsNegated = startWithNegated}
     
-let modelCheck (config : SolverConfiguration) (tsMap : Map<TraceVariable, GNBA<int, 'L>>) (hyperqptl : HyperQPTL<'L>) (computeWitness : bool) timeout =
+let modelCheck (config : SolverConfiguration) (tsMap : Map<TraceVariable, GNBA<int, 'L>>) (hyperqptl : HyperQPTL<'L>) (useOwl: bool) (computeWitness : bool) timeout =
     let tsMapSimplified = 
         tsMap
         |> Map.map (fun _ gnba -> 
@@ -237,7 +244,7 @@ let modelCheck (config : SolverConfiguration) (tsMap : Map<TraceVariable, GNBA<i
                 sw.Start()
 
                 let gnba' = 
-                    match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.MainPath config.AutfiltPath (Effort.HIGH) None gnba with
+                    match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None gnba with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
@@ -277,7 +284,7 @@ let modelCheck (config : SolverConfiguration) (tsMap : Map<TraceVariable, GNBA<i
             |> set
 
 
-    let possiblyNegatedAut = generateAutomaton config tsMapSimplified nonProjectedTraces hyperqptl.QuantifierPrefix hyperqptl.LTLMatrix timeout
+    let possiblyNegatedAut = generateAutomaton config tsMapSimplified nonProjectedTraces hyperqptl.QuantifierPrefix hyperqptl.LTLMatrix useOwl timeout
     let aut = possiblyNegatedAut.Aut
     let isNegated = possiblyNegatedAut.IsNegated
    
@@ -291,7 +298,7 @@ let modelCheck (config : SolverConfiguration) (tsMap : Map<TraceVariable, GNBA<i
         sw.Start()
 
         let res = 
-            match FsOmegaLib.Conversion.AutomataChecks.checkEmptiness Util.DEBUG config.MainPath config.AutfiltPath None aut with
+            match FsOmegaLib.Conversion.AutomataChecks.checkEmptiness Util.DEBUG config.GetMainPath config.GetAutfiltPath None aut with
             | Success isEmpty ->
                 if isNegated then
                     isEmpty
@@ -310,7 +317,7 @@ let modelCheck (config : SolverConfiguration) (tsMap : Map<TraceVariable, GNBA<i
         sw.Start()
 
         let nba = 
-            match FsOmegaLib.Conversion.AutomatonConversions.convertToNBA Util.DEBUG config.MainPath config.AutfiltPath Effort.HIGH None aut with
+            match FsOmegaLib.Conversion.AutomatonConversions.convertToNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath Effort.HIGH None aut with
             | Success nba -> nba
             | Fail err -> raise <| AnalysisException err
             | Timeout -> raise <| TimeoutException

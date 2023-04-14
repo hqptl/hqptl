@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 *)
 
-module HQPTL.JSON
+module FsOmegaLib.JSON
 
 exception JsonError
 
@@ -127,7 +127,8 @@ module Parser =
     let private stringLiteral =
         let escape =  
             anyOf "\"\\/bfnrt"
-            |>> function
+            |>> fun x -> 
+                match x with
                 | 'b' -> "\b"
                 | 'f' -> "\u000C"
                 | 'n' -> "\n"
@@ -142,11 +143,10 @@ module Parser =
                 |> char |> string
             )
 
-        between (pstring "\"") (pstring "\"")
-                (stringsSepBy (manySatisfy (fun c -> c <> '"' && c <> '\\'))
-                            (pstring "\\" >>. (escape <|> unicodeEscape)))
+        pchar '"' >>. (stringsSepBy (manySatisfy (fun c -> c <> '"' && c <> '\\'))
+                            (pstring "\\" >>. (escape <|> unicodeEscape))) .>> pchar '"'
 
-
+                
     let private stringParser = stringLiteral |>> JString
 
     let private numberParser = pfloat |>> JNumber 
@@ -156,11 +156,11 @@ module Parser =
     let private nullParser  = stringReturn "null" JNull
 
     let private listParser   = 
-        between (pchar '[' .>> spaces) (pchar ']') (sepBy (jsonParser .>> spaces) (pchar ',' .>> spaces))
+        pchar '[' >>. spaces >>. (sepBy (jsonParser .>> spaces) (pchar ',' .>> spaces)) .>> pchar ']'
         |>> JList
 
     let private objectParser   = 
-        between (pchar '{' .>> spaces) (pchar '}') (sepBy (tuple2 stringLiteral (spaces >>. pstring ":" >>. spaces >>. jsonParser) .>> spaces) (pchar ',' .>> spaces))
+        pchar '{' >>. spaces >>. (sepBy (tuple2 stringLiteral (spaces >>. pchar ':' >>. spaces >>. jsonParser) .>> spaces) (pchar ',' .>> spaces)) .>> pchar '}'
         |>> (fun x -> x |> Map.ofList |> JObject)
     
 

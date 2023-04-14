@@ -21,14 +21,32 @@ open System
 open System.IO
 
 open Util
-open JSON 
+open FsOmegaLib.JSON 
+
 
 type SolverConfiguration = 
     {
-        MainPath : String
-        AutfiltPath: String
-        Ltl2tgbaPath: String
+        MainPath : Option<String>
+        AutfiltPath: Option<String>
+        Ltl2tgbaPath: Option<String>
+        OwlPath : Option<String>
     }
+
+    member this.GetMainPath = 
+        this.MainPath
+        |> Option.defaultWith (fun _ -> raise <| AnalysisException "Requested main path, but this was not defined")
+    
+    member this.GetAutfiltPath = 
+        this.AutfiltPath
+        |> Option.defaultWith (fun _ -> raise <| AnalysisException "Requested autfilt path, but this was not defined")
+
+    member this.GetLtl2tgbaPath = 
+        this.Ltl2tgbaPath
+        |> Option.defaultWith (fun _ -> raise <| AnalysisException "Requested ltl2tgba path, but this was not defined")
+
+    member this.GetOwlPath = 
+        this.OwlPath
+        |> Option.defaultWith (fun _ -> raise <| AnalysisException "Requested owl path, but this was not defined")
 
         
 type VerbosityLevel = 
@@ -40,19 +58,20 @@ type VerbosityLevel =
 
 
 let private parseConfigFile (s : string) =
-    match JSON.Parser.parseJsonString s with 
+    match FsOmegaLib.JSON.Parser.parseJsonString s with 
     | Result.Error err -> raise <| AnalysisException $"Could not parse config file: %s{err}"
     | Result.Ok x -> 
         {
-            MainPath = "./"
+            MainPath = "./" |> Some
             AutfiltPath =
                 (JSON.tryLookup "autfilt" x)
                 |> Option.bind (fun x -> JSON.tryGetString x)
-                |> Option.defaultWith (fun _ -> raise <| AnalysisException "Must specify path to autfilt")
             Ltl2tgbaPath = 
                 (JSON.tryLookup "ltl2tgba" x)
                 |> Option.bind (fun x -> JSON.tryGetString x)
-                |> Option.defaultWith (fun _ -> raise <| AnalysisException "Must specify path to ltl2tgba")
+            OwlPath = 
+                (JSON.tryLookup "owl" x)
+                |> Option.bind (fun x -> JSON.tryGetString x)
         }
 
 let getConfig() = 
@@ -74,10 +93,16 @@ let getConfig() =
 
     let solverConfig = parseConfigFile configContent
 
-    if System.IO.FileInfo(solverConfig.AutfiltPath).Exists |> not then 
-        raise <| AnalysisException "The path to the spot's autfilt is incorrect"
+    if solverConfig.AutfiltPath.IsSome then 
+        if System.IO.FileInfo(solverConfig.AutfiltPath.Value).Exists |> not then 
+            raise <| AnalysisException "The given path to the spot's autfilt is incorrect"
 
-    if System.IO.FileInfo(solverConfig.Ltl2tgbaPath).Exists |> not then 
-        raise <| AnalysisException "The path to the spot's ltl2tgba is incorrect"
+    if solverConfig.Ltl2tgbaPath.IsSome then 
+        if System.IO.FileInfo(solverConfig.Ltl2tgbaPath.Value).Exists |> not then 
+            raise <| AnalysisException "The given path to the spot's ltl2tgba is incorrect"
+
+    if solverConfig.OwlPath.IsSome then 
+        if System.IO.FileInfo(solverConfig.OwlPath.Value).Exists |> not then 
+            raise <| AnalysisException "The given path to the owl is incorrect"
     
     solverConfig

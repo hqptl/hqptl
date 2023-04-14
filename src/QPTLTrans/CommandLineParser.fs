@@ -28,6 +28,7 @@ type CommandLineArguments =
         ExecMode : option<ExecutionMode>
         Timeout : option<int>
         Output : option<String>
+        UseOwl : bool
     }
 
     static member Default = 
@@ -35,6 +36,7 @@ type CommandLineArguments =
             ExecMode = None
             Timeout = Option.None
             Output = None
+            UseOwl = false
         }
 
 let rec private splitByPredicate (f : 'T -> bool) (xs : list<'T>) = 
@@ -70,6 +72,8 @@ let parseCommandLineArguments (args : list<String>) =
                             Result.Error "Option -o must be followed by an argument"
                         else 
                             parseArgumentsRec (List.tail xs) {opt with Output = xs.[0] |> Some}
+                    | "--owl" -> 
+                        parseArgumentsRec xs {opt with UseOwl = true}
                     | "-t" -> 
                         match xs with 
                             | [] -> 

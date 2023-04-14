@@ -6,7 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Util.fs" />
-    <Compile Include="JSON.fs" />
     <Compile Include="RunConfiguration.fs" />
     <Compile Include="HyperQPTL.fs" />
     <Compile Include="GraphUtil.fs" />

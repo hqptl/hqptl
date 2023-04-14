@@ -36,6 +36,7 @@ type CommandLineArguments =
         Timeout : Option<int>
         DebugPrintouts : bool
         ComputeWitnessForOuterTraces : bool
+        UseOwl : bool
     }
 
     static member Default = 
@@ -48,6 +49,7 @@ type CommandLineArguments =
             Timeout = None
             DebugPrintouts = false
             ComputeWitnessForOuterTraces = false
+            UseOwl = false
         }
 
 let rec private splitByPredicate (f : 'T -> bool) (xs : list<'T>) = 
@@ -102,6 +104,8 @@ let parseCommandLineArguments (args : list<String>) =
                         parseArgumentsRec xs {opt with Verify = false}
                     | "--witness" -> 
                         parseArgumentsRec xs {opt with ComputeWitnessForOuterTraces = true}
+                    | "--owl" -> 
+                        parseArgumentsRec xs {opt with UseOwl = true}
                     | s when s <> "" && s.Trim().StartsWith "-" -> 
                         Result.Error ("Option " + s + " is not supported" )
                     | x -> 

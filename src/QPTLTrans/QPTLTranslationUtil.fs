@@ -45,7 +45,7 @@ let readAndParseQPTL propPath =
     qptl
 
 
-let convertQPTLToGNBA (config : SolverConfiguration) (formula: QPTL<PropVariable>) timeout  = 
+let convertQPTLToGNBA (config : SolverConfiguration) (formula: QPTL<PropVariable>) (useOwl: bool) (timeout: int option)  = 
     let prefix =
         formula.QuantifierPrefix
         |> List.map (fun x -> 
@@ -57,12 +57,12 @@ let convertQPTLToGNBA (config : SolverConfiguration) (formula: QPTL<PropVariable
         formula.LTLMatrix
         |> LTL.map (fun x -> PropAtom x)
             
-    let possiblyNegatedAut = HQPTL.ModelChecking.generateAutomaton config Map.empty Set.empty prefix ltlMatrix timeout
+    let possiblyNegatedAut = HQPTL.ModelChecking.generateAutomaton config Map.empty Set.empty prefix ltlMatrix useOwl timeout
     
     let aut = 
         if possiblyNegatedAut.IsNegated then
             // The automaton is negated, so we need to negate once more
-            match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA HQPTL.Util.DEBUG config.MainPath config.AutfiltPath (Effort.LOW) None possiblyNegatedAut.Aut with
+            match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA HQPTL.Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.LOW) None possiblyNegatedAut.Aut with
             | Success x -> x
             | Fail err -> raise <| AnalysisException err
             | Timeout -> raise <| TimeoutException
@@ -76,10 +76,10 @@ let convertQPTLToGNBA (config : SolverConfiguration) (formula: QPTL<PropVariable
         | PropAtom y -> y
         | TraceAtom _ -> raise <| AnalysisException "Should not happen")
     
-let convertQPTLToNBA (config : SolverConfiguration) (formula: QPTL<PropVariable>) timeout =
-    let gnba = convertQPTLToGNBA config formula timeout
+let convertQPTLToNBA (config : SolverConfiguration) (formula: QPTL<PropVariable>) (useOwl: bool) (timeout: int option) =
+    let gnba = convertQPTLToGNBA config formula useOwl timeout
     
-    match FsOmegaLib.Conversion.AutomatonConversions.convertToNBA HQPTL.Util.DEBUG config.MainPath config.AutfiltPath (Effort.LOW) timeout gnba with
+    match FsOmegaLib.Conversion.AutomatonConversions.convertToNBA HQPTL.Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.LOW) timeout gnba with
     | Success x -> x
     | Fail err -> raise <| AnalysisException err
     | Timeout -> raise <| TimeoutException

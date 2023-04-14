@@ -57,7 +57,7 @@ let readAndParseHanoiInstance (config : SolverConfiguration) systemInputPaths fo
     let tsList = 
         tscontent
         |> List.map (fun x -> 
-            match FsOmegaLib.Conversion.AutomatonFromString.convertHoaStringToGNBA HQPTL.Util.DEBUG config.MainPath config.AutfiltPath Effort.LOW None x with 
+            match FsOmegaLib.Conversion.AutomatonFromString.convertHoaStringToGNBA HQPTL.Util.DEBUG config.GetMainPath config.GetAutfiltPath Effort.LOW None x with 
             | Success x -> x 
             | Fail msg -> raise <| FrontendException $"Failure when obtaining GNBA for system: %s{msg}"
             | Timeout -> raise <| FrontendException $"Timeout"
@@ -263,7 +263,7 @@ let main args =
                         |> List.map (fun x -> x, tsList.[0])
                         |> Map.ofList
                 
-                let res, lasso = HQPTL.ModelChecking.modelCheck config tsMap formula cmdArgs.ComputeWitnessForOuterTraces cmdArgs.Timeout
+                let res, lasso = HQPTL.ModelChecking.modelCheck config tsMap formula cmdArgs.UseOwl cmdArgs.ComputeWitnessForOuterTraces cmdArgs.Timeout
 
                 if res then 
                     printfn "SAT"
