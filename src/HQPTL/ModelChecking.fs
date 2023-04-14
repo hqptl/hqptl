@@ -81,117 +81,142 @@ let rec private generateAutomatonRec (config : SolverConfiguration) (tsMap : Map
         match lastQuantifier with
         | ExistsTrace pi  -> 
             let sw = System.Diagnostics.Stopwatch()
-            sw.Start()
 
+            Util.LOGGERn "========================= \"exists %s{pi}\" ========================="
+            Util.LOGGERn $"Automaton Size: %i{possiblyNegatedAut.Aut.Skeleton.States.Count}, System Size: %i{tsMap.[pi].States.Count}"
+
+            sw.Start()
             let positiveAut = 
                 if possiblyNegatedAut.IsNegated then
-                    Util.LOGGER $"Start automaton negation for \"exists %s{pi}\" ..."
+                    Util.LOGGER $"Start automaton negation..."
                     // Negate
                     match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
                 else 
-                    Util.LOGGER $"Start automaton simplification for \"exists %s{pi}\" ..."
+                    Util.LOGGER $"Start automaton simplification..."
                     // Pass into spot (without any changes to the language) to enable easy simplication
                     match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
 
-            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+            Util.LOGGERn $"Done. | Automaton Size: %i{positiveAut.Skeleton.States.Count} | Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) |"
 
-            Util.LOGGER $"Start automaton-system-product for \"exists %s{pi}\" ..."
+            Util.LOGGER $"Start automaton-system-product..."
             sw.Restart()
             let nextAut = constructAutomatonSystemProduct positiveAut tsMap.[pi] pi (Set.contains pi nonProjectedTraces |> not)
-            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+            Util.LOGGERn $"Done. | Automaton Size: %i{nextAut.Skeleton.States.Count} | Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) |"
+
+            Util.LOGGERn "=================================================="
+            Util.LOGGERn ""
 
             generateAutomatonRec config tsMap nonProjectedTraces remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = false}
             
         | ForallTrace pi -> 
             let sw = System.Diagnostics.Stopwatch()
-            sw.Start()
 
+            Util.LOGGERn "========================= \"forall %s{pi}\" ========================="
+            Util.LOGGERn $"Automaton Size: %i{possiblyNegatedAut.Aut.Skeleton.States.Count}, System Size: %i{tsMap.[pi].States.Count}"
+
+            sw.Start()
             let negativeAut = 
                 if not possiblyNegatedAut.IsNegated then 
-                    Util.LOGGER $"Start automaton negation for \"forall %s{pi}\" ..."
+                    Util.LOGGER $"Start automaton negation..."
                     // Negate
                     match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
                 else 
-                    Util.LOGGER $"Start automaton simplification for \"forall %s{pi}\" ..."
+                    Util.LOGGER $"Start automaton simplification..."
                     // Pass into spot (without any changes to the language) to enable easy simplication
                     match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
 
-            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+            Util.LOGGERn $"Done. | Automaton Size: %i{negativeAut.Skeleton.States.Count} | Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) |"
 
-            Util.LOGGER $"Start automaton-system-product for \"forall %s{pi}\" ..."
+            Util.LOGGER $"Start automaton-system-product..."
             sw.Restart()
             let nextAut = constructAutomatonSystemProduct negativeAut tsMap.[pi] pi (Set.contains pi nonProjectedTraces |> not)
-            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+            Util.LOGGERn $"Done. | Automaton Size: %i{nextAut.Skeleton.States.Count} | Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) |"
+
+            Util.LOGGERn "=================================================="
+            Util.LOGGERn ""
 
             generateAutomatonRec config tsMap nonProjectedTraces remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = true}
         | ExistsProp p ->
             let sw = System.Diagnostics.Stopwatch()
-            sw.Start()
 
+            Util.LOGGERn "========================= \"E %s{p}\" ========================="
+            Util.LOGGERn $"Automaton Size: %i{possiblyNegatedAut.Aut.Skeleton.States.Count}"
+
+            sw.Start()
             let positiveAut = 
                 if possiblyNegatedAut.IsNegated then
-                    Util.LOGGER $"Start automaton negation for \"E %s{p}\" ..."
+                    Util.LOGGER $"Start automaton negation..."
                     // Negate
                     match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
                 else 
-                    Util.LOGGER $"Start automaton simplification for \"E %s{p}\" ..."
+                    Util.LOGGER $"Start automaton simplification..."
                     // Pass into spot (without any changes to the language) to enable easy simplication
                     match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
 
-            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+            Util.LOGGERn $"Done. | Automaton Size: %i{positiveAut.Skeleton.States.Count} | Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) |"
 
 
-            Util.LOGGER $"Start automaton-system-product for \"E %s{p}\" ..."
+            Util.LOGGER $"Start projection..."
             sw.Restart()
             let nextAut = projectAwayAP positiveAut p
-            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+            Util.LOGGERn $"Done. | Automaton Size: %i{nextAut.Skeleton.States.Count} | Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) |"
+
+            Util.LOGGERn "=================================================="
+            Util.LOGGERn ""
 
             generateAutomatonRec config tsMap nonProjectedTraces remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = false}
             
         | ForallProp p ->
             let sw = System.Diagnostics.Stopwatch()
-            sw.Start()
 
+            Util.LOGGERn "========================= \"forall %s{pi}\" ========================="
+            Util.LOGGERn $"Automaton Size: %i{possiblyNegatedAut.Aut.Skeleton.States.Count}"
+
+
+            sw.Start()
             let negativeAut = 
                 if not possiblyNegatedAut.IsNegated then 
-                    Util.LOGGER $"Start automaton negation for \"A %s{p}\" ..."
+                    Util.LOGGER $"Start automaton negation..."
                     // Negate
                     match FsOmegaLib.Conversion.AutomataOperations.complementToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
                 else 
-                    Util.LOGGER $"Start automaton simplification for \"A %s{p}\" ..."
+                    Util.LOGGER $"Start automaton simplification..."
                     // Pass into spot (without any changes to the language) to enable easy simplication
                     match FsOmegaLib.Conversion.AutomatonConversions.convertToGNBA Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.HIGH) None possiblyNegatedAut.Aut with
                     | Success x -> x
                     | Fail err -> raise <| AnalysisException err
                     | Timeout -> raise <| TimeoutException
 
-            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+            Util.LOGGERn $"Done. | Automaton Size: %i{negativeAut.Skeleton.States.Count} | Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) |"
 
-            Util.LOGGER $"Start automaton-system-product for \"A %s{p}\" ..."
+            Util.LOGGER $"Start projection..."
             sw.Restart()
             let nextAut = projectAwayAP negativeAut p
-            Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+            Util.LOGGERn $"Done. | Automaton Size: %i{nextAut.Skeleton.States.Count} | Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) |"
+
+            Util.LOGGERn "=================================================="
+            Util.LOGGERn ""
 
             generateAutomatonRec config tsMap nonProjectedTraces remainingPrefix {PossiblyNegatedAutomaton.Aut = nextAut; IsNegated = true}
 
@@ -229,6 +254,7 @@ let generateAutomaton (config : SolverConfiguration) (tsmap : Map<TraceVariable,
             | Timeout -> raise TimeoutException
 
     Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+    Util.LOGGERn ""
 
     generateAutomatonRec config tsmap nonProjectedTraces quantifierPrefix {PossiblyNegatedAutomaton.Aut = aut; IsNegated = startWithNegated}
     
