@@ -270,7 +270,7 @@ let main args =
                         UseOwl = cmdArgs.UseOwl
                         ComputeWitnesses = cmdArgs.ComputeWitnesses
                         InitialSystemSimplification = cmdArgs.InitialSystemSimplification
-                        IntermediateSimplification = cmdArgs.InitialSystemSimplification
+                        IntermediateSimplification = cmdArgs.IntermediateSimplification
                     }
                 
                 let res, lasso = HQPTL.ModelChecking.modelCheck config mcOptions tsMap formula
