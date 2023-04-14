@@ -45,7 +45,7 @@ let readAndParseQPTL propPath =
     qptl
 
 
-let convertQPTLToGNBA (config : SolverConfiguration) (formula: QPTL<PropVariable>) (useOwl: bool) (timeout: int option)  = 
+let convertQPTLToGNBA (config : SolverConfiguration) (mcOptions: ModelCheckingOptions) (formula: QPTL<PropVariable>) = 
     let prefix =
         formula.QuantifierPrefix
         |> List.map (fun x -> 
@@ -57,7 +57,7 @@ let convertQPTLToGNBA (config : SolverConfiguration) (formula: QPTL<PropVariable
         formula.LTLMatrix
         |> LTL.map (fun x -> PropAtom x)
             
-    let possiblyNegatedAut = HQPTL.ModelChecking.generateAutomaton config Map.empty Set.empty prefix ltlMatrix useOwl timeout
+    let possiblyNegatedAut = HQPTL.ModelChecking.generateAutomaton config mcOptions Map.empty Set.empty prefix ltlMatrix
     
     let aut = 
         if possiblyNegatedAut.IsNegated then
@@ -76,10 +76,10 @@ let convertQPTLToGNBA (config : SolverConfiguration) (formula: QPTL<PropVariable
         | PropAtom y -> y
         | TraceAtom _ -> raise <| AnalysisException "Should not happen")
     
-let convertQPTLToNBA (config : SolverConfiguration) (formula: QPTL<PropVariable>) (useOwl: bool) (timeout: int option) =
-    let gnba = convertQPTLToGNBA config formula useOwl timeout
+let convertQPTLToNBA (config : SolverConfiguration) (mcOptions: ModelCheckingOptions) (formula: QPTL<PropVariable>) =
+    let gnba = convertQPTLToGNBA config mcOptions formula
     
-    match FsOmegaLib.Conversion.AutomatonConversions.convertToNBA HQPTL.Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.LOW) timeout gnba with
+    match FsOmegaLib.Conversion.AutomatonConversions.convertToNBA HQPTL.Util.DEBUG config.GetMainPath config.GetAutfiltPath (Effort.LOW) mcOptions.Timeout gnba with
     | Success x -> x
     | Fail err -> raise <| AnalysisException err
     | Timeout -> raise <| TimeoutException

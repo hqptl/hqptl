@@ -26,17 +26,23 @@ type ExecutionMode =
 type CommandLineArguments = 
     {
         ExecMode : option<ExecutionMode>
-        Timeout : option<int>
         Output : option<String>
+        
+        Timeout : Option<int>
         UseOwl : bool
+        InitialSystemSimplification : bool
+        IntermediateSimplification : bool
     }
 
     static member Default = 
         {
             ExecMode = None
-            Timeout = Option.None
             Output = None
+            
+            Timeout = None
             UseOwl = false
+            InitialSystemSimplification = true
+            IntermediateSimplification = true
         }
 
 let rec private splitByPredicate (f : 'T -> bool) (xs : list<'T>) = 
@@ -74,6 +80,10 @@ let parseCommandLineArguments (args : list<String>) =
                             parseArgumentsRec (List.tail xs) {opt with Output = xs.[0] |> Some}
                     | "--owl" -> 
                         parseArgumentsRec xs {opt with UseOwl = true}
+                    | "--no-simplification" -> 
+                        parseArgumentsRec xs {opt with IntermediateSimplification = false}
+                    | "--no-initial-simplification" -> 
+                        parseArgumentsRec xs {opt with InitialSystemSimplification = false}
                     | "-t" -> 
                         match xs with 
                             | [] -> 

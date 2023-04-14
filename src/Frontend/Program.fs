@@ -25,6 +25,7 @@ open FsOmegaLib.Conversion
 
 open HQPTL.RunConfiguration
 open HQPTL.HyperQPTL
+open HQPTL.ModelChecking
 
 open Util
 open ExplictTransitionSystem
@@ -262,8 +263,17 @@ let main args =
                         traceVarList
                         |> List.map (fun x -> x, tsList.[0])
                         |> Map.ofList
+
+                let mcOptions = 
+                    {
+                        ModelCheckingOptions.Timeout = cmdArgs.Timeout
+                        UseOwl = cmdArgs.UseOwl
+                        ComputeWitnesses = cmdArgs.ComputeWitnesses
+                        InitialSystemSimplification = cmdArgs.InitialSystemSimplification
+                        IntermediateSimplification = cmdArgs.InitialSystemSimplification
+                    }
                 
-                let res, lasso = HQPTL.ModelChecking.modelCheck config tsMap formula cmdArgs.UseOwl cmdArgs.ComputeWitnessForOuterTraces cmdArgs.Timeout
+                let res, lasso = HQPTL.ModelChecking.modelCheck config mcOptions tsMap formula
 
                 if res then 
                     printfn "SAT"
@@ -271,7 +281,7 @@ let main args =
                     printfn "UNSAT"
 
 
-                if cmdArgs.ComputeWitnessForOuterTraces then 
+                if cmdArgs.ComputeWitnesses then 
                     match lasso with 
                     | None -> 
                         //printfn "Could not compute a Lasso"

@@ -21,7 +21,7 @@ open FsOmegaLib.GNBA
 open FsOmegaLib.NBA
 
 open HQPTL.Util
-open HQPTL.RunConfiguration
+open HQPTL.ModelChecking
 
 open CommandLineParser
 
@@ -35,6 +35,15 @@ let private run (args: array<string>) =
                    
     let config = HQPTL.RunConfiguration.getConfig()
 
+    let mcOptions = 
+        {
+            ModelCheckingOptions.Timeout = cmdArgs.Timeout
+            UseOwl = cmdArgs.UseOwl
+            ComputeWitnesses = false
+            InitialSystemSimplification = cmdArgs.InitialSystemSimplification
+            IntermediateSimplification = cmdArgs.InitialSystemSimplification
+        }
+
     match cmdArgs.ExecMode with 
         | None -> 
             raise <| AnalysisException "Must specify a mode"
@@ -43,7 +52,7 @@ let private run (args: array<string>) =
             | ConvertQPTLToGNBA path ->
                 try 
                     let formula = QPTLTranslationUtil.readAndParseQPTL path
-                    let gnba = QPTLTranslationUtil.convertQPTLToGNBA config formula cmdArgs.UseOwl cmdArgs.Timeout 
+                    let gnba = QPTLTranslationUtil.convertQPTLToGNBA config mcOptions formula
                     let s = GNBA.toHoaString string string gnba
 
                     match cmdArgs.Output with 
@@ -60,7 +69,7 @@ let private run (args: array<string>) =
             | ConvertQPTLToNBA path ->
                 try 
                     let formula = QPTLTranslationUtil.readAndParseQPTL path
-                    let nba = QPTLTranslationUtil.convertQPTLToNBA config formula cmdArgs.UseOwl cmdArgs.Timeout 
+                    let nba = QPTLTranslationUtil.convertQPTLToNBA config mcOptions formula
                     let s = NBA.toHoaString string string nba
 
                     match cmdArgs.Output with 

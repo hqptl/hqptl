@@ -33,10 +33,14 @@ type CommandLineArguments =
         Verify : bool
         WriteExplicitSystems : bool
         ExplicitInstanceOutputFiles : option<list<String> * String>
-        Timeout : Option<int>
+        
         DebugPrintouts : bool
-        ComputeWitnessForOuterTraces : bool
+
+        Timeout : Option<int>
+        ComputeWitnesses : bool
         UseOwl : bool
+        InitialSystemSimplification : bool
+        IntermediateSimplification : bool
     }
 
     static member Default = 
@@ -46,10 +50,13 @@ type CommandLineArguments =
             Verify = true
             WriteExplicitSystems = false
             ExplicitInstanceOutputFiles = None
-            Timeout = None
             DebugPrintouts = false
-            ComputeWitnessForOuterTraces = false
+
+            Timeout = None
+            ComputeWitnesses = false
             UseOwl = false
+            InitialSystemSimplification = true
+            IntermediateSimplification = true
         }
 
 let rec private splitByPredicate (f : 'T -> bool) (xs : list<'T>) = 
@@ -103,9 +110,13 @@ let parseCommandLineArguments (args : list<String>) =
                     | "--no-verification" -> 
                         parseArgumentsRec xs {opt with Verify = false}
                     | "--witness" -> 
-                        parseArgumentsRec xs {opt with ComputeWitnessForOuterTraces = true}
+                        parseArgumentsRec xs {opt with ComputeWitnesses = true}
                     | "--owl" -> 
                         parseArgumentsRec xs {opt with UseOwl = true}
+                    | "--no-simplification" -> 
+                        parseArgumentsRec xs {opt with IntermediateSimplification = false}
+                    | "--no-initial-simplification" -> 
+                        parseArgumentsRec xs {opt with InitialSystemSimplification = false}
                     | s when s <> "" && s.Trim().StartsWith "-" -> 
                         Result.Error ("Option " + s + " is not supported" )
                     | x -> 
