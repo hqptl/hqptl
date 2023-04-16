@@ -203,10 +203,12 @@ module AutomatonConversions =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToGNBA c (fun x -> revDict.[x]) 
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -240,10 +242,12 @@ module AutomatonConversions =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToNBA c (fun x -> revDict.[x]) 
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -276,10 +280,12 @@ module AutomatonConversions =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToDPA c (fun x -> revDict.[x]) 
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -304,10 +310,12 @@ module AutomatonFromString =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToGNBA c id
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -331,10 +339,12 @@ module AutomatonFromString =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToNBA c id
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -357,10 +367,12 @@ module AutomatonFromString =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToDPA c id
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -396,10 +408,12 @@ module AutomataOperations =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
             
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToGNBA c (fun x -> revDict.[x]) 
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -433,10 +447,12 @@ module AutomataOperations =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
             
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToNBA c (fun x -> revDict.[x]) 
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -475,10 +491,12 @@ module AutomataOperations =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToGNBA c (fun x -> revDict.[x]) 
                 |> Success  
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -516,10 +534,12 @@ module AutomataOperations =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToGNBA c (fun x -> revDict.[x]) 
                 |> Success 
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -556,10 +576,12 @@ module LTLConversion =
             let res = Util.SystemCallUtil.systemCall ltl2tgbaPath args timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToGNBA c (fun x -> revDict.[x]) 
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -594,10 +616,12 @@ module LTLConversion =
             let res = Util.SystemCallUtil.systemCall ltl2tgbaPath args timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToNBA c (fun x -> revDict.[x]) 
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -632,10 +656,12 @@ module LTLConversion =
             let res = Util.SystemCallUtil.systemCall ltl2tgbaPath args timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToDPA c (fun x -> revDict.[x]) 
                 |> Success  
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -670,10 +696,12 @@ module LTLConversion =
             let res = Util.SystemCallUtil.systemCall owlPath args timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToGNBA c (fun x -> revDict.[x]) 
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -708,10 +736,12 @@ module LTLConversion =
             let res = Util.SystemCallUtil.systemCall owlPath args timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToNBA c (fun x -> revDict.[x]) 
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -746,10 +776,12 @@ module LTLConversion =
             let res = Util.SystemCallUtil.systemCall owlPath args timeout
 
             match res with 
-            | SystemCallSuccess _ -> 
+            | SystemCallSuccess (_, 0) -> 
                 let c = File.ReadAllText(targetPath)
                 HoaConversion.resultToDPA c (fun x -> revDict.[x]) 
                 |> Success  
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (non-zero) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -781,9 +813,11 @@ module AutomataChecks =
             let res = Util.SystemCallUtil.systemCall autfiltPath args timeout
 
             match res with 
-            | SystemCallSuccess c -> 
+            | SystemCallSuccess (c, 0) | SystemCallSuccess (c, 1) -> 
                 if c = "" then false else true
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (not 0 and not 1) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -818,9 +852,11 @@ module AutomataChecks =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
 
             match res with 
-            | SystemCallSuccess c -> 
+            | SystemCallSuccess (c, 0) | SystemCallSuccess (c, 1) -> 
                 if c = "" then false else true
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (not 0 and not 1) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 
@@ -855,9 +891,11 @@ module AutomataChecks =
             let res = Util.SystemCallUtil.systemCall autfiltPath arg timeout
 
             match res with 
-            | SystemCallSuccess c -> 
+            | SystemCallSuccess (c: String, 0) | SystemCallSuccess (c: String, 1) -> 
                 if c = "" then false else true
                 |> Success
+            | SystemCallSuccess (_, exitCode) -> 
+                Fail $"Unexpected (not 0 and not 1) exit code %i{exitCode}"
             | SystemCallTimeout -> 
                 Timeout
             | SystemCallError err -> 

@@ -45,7 +45,7 @@ let dictToMap (d : Dictionary<'A, 'B>) =
 module SystemCallUtil = 
 
     type SystemCallResult = 
-        | SystemCallSuccess of String
+        | SystemCallSuccess of String * int
         | SystemCallError of String
         | SystemCallTimeout
 
@@ -69,13 +69,14 @@ module SystemCallUtil =
 
         if a then 
             let err = p.StandardError.ReadToEnd() 
-
+            
             if err <> "" then 
                 SystemCallError err
             else 
                 let res = p.StandardOutput.ReadToEnd()
                 p.Kill true
-                SystemCallSuccess res
+                let exitCode = p.ExitCode
+                SystemCallSuccess (res, exitCode)
         else 
             p.Kill true
             SystemCallTimeout
