@@ -10,6 +10,7 @@
     <Compile Include="BooleanPrograms.fs" />
     <Compile Include="NuSMV.fs" />
     <Compile Include="Translation.fs" />
+    <Compile Include="InstanceParsing.fs" />
     <Compile Include="CommandLineParser.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

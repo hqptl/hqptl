@@ -29,139 +29,8 @@ open HQPTL.ModelChecking
 
 open Util
 open ExplictTransitionSystem
+open InstanceParsing
 open CommandLineParser
-
-let readAndParseHanoiInstance (config : SolverConfiguration) systemInputPaths formulaInputPath  = 
-    let propcontent =   
-        try 
-            File.ReadAllText formulaInputPath
-        with 
-            | _ -> 
-                raise <| FrontendException $"Could not open/read file %s{formulaInputPath}"
-                
-    let tscontent = 
-        systemInputPaths
-        |> List.map (fun x -> 
-                try 
-                    File.ReadAllText  x
-                with 
-                    | _ -> 
-                        raise <| FrontendException $"Could not open/read file %s{x}"
-            )
-
-    let formula =
-        match HQPTL.HyperQPTL.Parser.parseHyperQPTL HQPTL.Util.ParserUtil.escapedStringParser propcontent with 
-            | Result.Ok x -> x
-            | Result.Error err -> 
-                raise <| FrontendException $"The HyperQPTL formula could not be parsed. %s{err}"
-                
-    let tsList = 
-        tscontent
-        |> List.map (fun x -> 
-            match FsOmegaLib.Conversion.AutomatonFromString.convertHoaStringToGNBA HQPTL.Util.DEBUG config.GetMainPath config.GetAutfiltPath Effort.LOW None x with 
-            | Success x -> x 
-            | Fail msg -> raise <| FrontendException $"Failure when obtaining GNBA for system: %s{msg}"
-            | Timeout -> raise <| FrontendException $"Timeout"
-        )
-
-    tsList, formula
-
-let readAndParseSymbolicInstance systemInputPaths formulaInputPath =
-    let systemList = 
-        systemInputPaths 
-        |> List.map (fun x -> 
-                try 
-                    File.ReadAllText  x
-                with 
-                    | _ -> 
-                        raise <| FrontendException $"Could not open/read file %s{x}"
-            )
-        |> List.map (fun s -> 
-            match NuSMV.Parser.parseProgram s with 
-                | Result.Ok x -> x 
-                | Result.Error msg -> 
-                    raise <| FrontendException $"The symbolic system could not be parsed. %s{msg}"
-            )
-
-    let propContent = 
-        try 
-            File.ReadAllText formulaInputPath
-        with 
-        | _ -> raise <| FrontendException $"Could not open/read file %s{formulaInputPath}"
-
-    let formula = 
-        match NuSMV.Parser.parseSymbolicHyperQPTL propContent with
-        | Result.Ok x -> x
-        | Result.Error err -> 
-            raise <| FrontendException $"The HyperQPTL formula could not be parsed: %s{err}"
-
-    systemList, formula
-
-
-let readAndParseBooleanProgramInstance systemInputPaths formulaInputPath =
-    let programList = 
-        systemInputPaths 
-        |> List.map (fun x -> 
-                try 
-                    File.ReadAllText  x
-                with 
-                    | _ -> 
-                        raise <| FrontendException $"Could not open/read file %s{x}"
-            )
-        |> List.map (fun s -> 
-            match BooleanPrograms.Parser.parseBooleanProgram s with 
-                | Result.Ok x -> x 
-                | Result.Error msg -> 
-                    raise <| FrontendException $"The boolean program could not be parsed. %s{msg}"
-            )
-
-    let propContent = 
-        try 
-            File.ReadAllText formulaInputPath
-        with 
-        | _ -> raise <| FrontendException $"Could not open/read file %s{formulaInputPath}"
-
-
-    let formula = 
-        match BooleanPrograms.Parser.parseBooleanProgramHyperQPTL propContent with
-        | Result.Ok x -> x
-        | Result.Error err -> 
-            raise <| FrontendException $"The HyperQPTL formula could not be parsed: %s{err}"
-
-    programList, formula
-
-let readAndParseExplicitInstance systemInputPaths formulaInputPath =
-    let explicitTsList = 
-        systemInputPaths 
-        |> List.map (fun x -> 
-                try 
-                    File.ReadAllText  x
-                with 
-                    | _ -> 
-                        raise <| FrontendException $"Could not open/read file %s{x}"
-            )
-        |> List.map (fun s -> 
-            match ExplictTransitionSystem.Parser.parseTS s with 
-                | Result.Ok x -> x 
-                | Result.Error msg -> 
-                    raise <| FrontendException $"The NuSMV system could not be parsed. %s{msg}"
-            )
-
-    let propContent = 
-        try 
-            File.ReadAllText formulaInputPath
-        with 
-        | _ -> raise <| FrontendException $"Could not open/read file %s{formulaInputPath}"
-
-
-    let formula = 
-        match ExplictTransitionSystem.Parser.parseExplictSystemHyperQPTL propContent with
-        | Result.Ok x -> x
-        | Result.Error err -> 
-            raise <| FrontendException $"The HyperQPTL formula could not be parsed: %s{err}"
-
-    explicitTsList, formula
-
 
 let private writeFormulaAndSystemString (systemOutputPaths: list<String>) formulaOutputPath (tsStringList : list<String>) (formulaString : String) =
     (systemOutputPaths, tsStringList)
@@ -182,10 +51,12 @@ let private writeFormulaAndSystemString (systemOutputPaths: list<String>) formul
 [<EntryPoint>]
 let main args =
     try 
+        
         let swTotal = System.Diagnostics.Stopwatch()
+        let sw = System.Diagnostics.Stopwatch()
         swTotal.Start()
 
-
+        sw.Restart()
         let cmdArgs =
             match CommandLineParser.parseCommandLineArguments (Array.toList args) with
                 | Result.Ok x -> x
@@ -193,8 +64,10 @@ let main args =
                     raise <| FrontendException $"%s{e}"
 
         let config = HQPTL.RunConfiguration.getConfig()
-
         HQPTL.Util.DEBUGPrintouts <- cmdArgs.DebugPrintouts
+
+        HQPTL.Util.LOGGERn $"========================= Initialization ========================="
+        HQPTL.Util.LOGGERn $"Read command line args and solver config. Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) "
 
         let systemInputPaths, formulaInputPath = 
             match cmdArgs.InputFiles with 
@@ -202,26 +75,68 @@ let main args =
             | None -> 
                 raise <| FrontendException "Must specify input files"
 
+
         let tsList, formula = 
             match cmdArgs.InputType with 
             | HanoiSystem -> 
-                readAndParseHanoiInstance config systemInputPaths formulaInputPath 
-            | SymbolicSystem -> 
-                readAndParseSymbolicInstance systemInputPaths formulaInputPath 
-                |> Translation.convertSymbolicSystemInstanceToGNBA
-            | BooleanProgramSystem -> 
-                readAndParseBooleanProgramInstance systemInputPaths formulaInputPath
-                |> Translation.convertBooleanProgramInstanceToGNBA
-            | ExplictSystem -> 
-                readAndParseExplicitInstance systemInputPaths formulaInputPath
-                |> Translation.convertExplictSystemInstanceToGNBA
+                HQPTL.Util.LOGGER $"Start Parsing..."
+                sw.Restart()
+                let tsStringList, formula = InstanceParsing.readAndParseHanoiInstance systemInputPaths formulaInputPath 
+                HQPTL.Util.LOGGERn $"done. Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) "
 
-        HQPTL.Util.LOGGERn "Read, parsed, and converted input"
+                HQPTL.Util.LOGGER $"Start translation..."
+                sw.Restart()
+                let tsList, formula = Translation.convertHanoiSystemInstanceToGNBA config tsStringList formula
+                HQPTL.Util.LOGGERn $"done. Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) "
+
+                tsList, formula
+
+            | SymbolicSystem -> 
+                HQPTL.Util.LOGGER $"Start Parsing..."
+                sw.Restart()
+                let programList, formula = InstanceParsing.readAndParseSymbolicInstance systemInputPaths formulaInputPath 
+                HQPTL.Util.LOGGERn $"done. Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) "
+
+                HQPTL.Util.LOGGER $"Start translation..."
+                sw.Restart()
+                let tsList, formula = Translation.convertSymbolicSystemInstanceToGNBA programList formula
+                HQPTL.Util.LOGGERn $"done. Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) "
+
+                tsList, formula
+
+            | BooleanProgramSystem -> 
+                HQPTL.Util.LOGGER $"Start Parsing..."
+                sw.Restart()
+                let booleanProgramList, formula = InstanceParsing.readAndParseBooleanProgramInstance systemInputPaths formulaInputPath 
+                HQPTL.Util.LOGGERn $"done. Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) "
+
+                HQPTL.Util.LOGGER $"Start translation..."
+                sw.Restart()
+                let tsList, formula = Translation.convertBooleanProgramInstanceToGNBA booleanProgramList formula
+                HQPTL.Util.LOGGERn $"done. Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) "
+
+                tsList, formula
+
+            | ExplictSystem -> 
+                HQPTL.Util.LOGGER $"Start Parsing..."
+                sw.Restart()
+                let explicitSystemList, formula = InstanceParsing.readAndParseExplicitInstance systemInputPaths formulaInputPath 
+                HQPTL.Util.LOGGERn $"done. Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) "
+
+                HQPTL.Util.LOGGER $"Start translation..."
+                sw.Restart()
+                let tsList, formula = Translation.convertExplictSystemInstanceToGNBA explicitSystemList formula
+                HQPTL.Util.LOGGERn $"done. Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s) "
+
+                tsList, formula
+
+        HQPTL.Util.LOGGERn $"=================================================="
+        HQPTL.Util.LOGGERn ""
 
         if cmdArgs.WriteExplicitSystems then 
-            HQPTL.Util.LOGGER "Start writing explict-state system to disc..."
-            let sw = System.Diagnostics.Stopwatch()
-            sw.Start()
+            HQPTL.Util.LOGGERn $"========================= Writing to Dics ========================="
+            HQPTL.Util.LOGGER "Start writing GNBA system to disc..."
+            sw.Restart()
 
             // Write the converted explict state system to a file
             let systemOutputPaths, formulaOutputPath = 
@@ -242,7 +157,10 @@ let main args =
 
             writeFormulaAndSystemString systemOutputPaths formulaOutputPath tsStringList formulaString
 
-            HQPTL.Util.LOGGERn $"Done: %i{sw.ElapsedMilliseconds} ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0} s)"
+            HQPTL.Util.LOGGERn $"done. Time: %i{sw.ElapsedMilliseconds}ms (%.4f{double(sw.ElapsedMilliseconds) / 1000.0}s)"
+            HQPTL.Util.LOGGERn $"=================================================="
+            HQPTL.Util.LOGGERn ""
+
 
         if cmdArgs.Verify then 
             try

@@ -21,19 +21,17 @@ open System
 
 open FsOmegaLib.LTL
 open FsOmegaLib.GNBA
+open FsOmegaLib.Conversion
 
 open HQPTL.HyperQPTL
+open HQPTL.RunConfiguration
 
 open Util
 open ExplictTransitionSystem
 open NuSMV
 open BooleanPrograms
 
-let convertSymbolicSystemInstanceToGNBA (plist : list<SmvProgram>, formula : SymbolicHyperQPTL) = 
-
-    HQPTL.Util.LOGGER "Start conversion to explicit instance..."
-
-
+let convertSymbolicSystemInstanceToGNBA (plist : list<SmvProgram>) (formula : SymbolicHyperQPTL) = 
     match SymbolicHyperQPTL.findError formula with 
     | None -> () 
     | Some msg -> 
@@ -166,14 +164,10 @@ let convertSymbolicSystemInstanceToGNBA (plist : list<SmvProgram>, formula : Sym
         unfoldedHyperQPTL
         |> HyperQPTL.map (fun x -> renamingMap[x])
 
-    HQPTL.Util.LOGGERn "Done"
-
     mappedTs, mappedFormula
 
 
-let convertBooleanProgramInstanceToGNBA (progList : list<BooleanProgram>, formula : BooleanProgramHyperQPTL) = 
-    
-    HQPTL.Util.LOGGER "Start conversion to explicit instance..."
+let convertBooleanProgramInstanceToGNBA (progList : list<BooleanProgram>) (formula : BooleanProgramHyperQPTL) = 
     match BooleanProgramHyperQPTL.findError formula with 
     | None -> () 
     | Some msg -> 
@@ -265,12 +259,9 @@ let convertBooleanProgramInstanceToGNBA (progList : list<BooleanProgram>, formul
         unfoldedHyperQPTL
         |> HyperQPTL.map (fun (x, i) -> x + "@" + string(i))
 
-    HQPTL.Util.LOGGERn "Done"
     mappedTs, mappedFormula
 
-let convertExplictSystemInstanceToGNBA (systemList : list<ExplictTransitionSystem<String>>, formula : ExplictSystemHyperQPTL) = 
-    HQPTL.Util.LOGGER "Start conversion to explicit instance..."
-
+let convertExplictSystemInstanceToGNBA (systemList : list<ExplictTransitionSystem<String>>) (formula : ExplictSystemHyperQPTL) = 
     let unfoldedHyperQPTL = 
         {
             HyperQPTL.QuantifierPrefix = formula.QuantifierPrefix
@@ -286,5 +277,16 @@ let convertExplictSystemInstanceToGNBA (systemList : list<ExplictTransitionSyste
     let tsList = 
         systemList |> List.map ExplictTransitionSystem.toGNBA
      
-    HQPTL.Util.LOGGERn "Done"
     tsList, unfoldedHyperQPTL
+
+let convertHanoiSystemInstanceToGNBA (config : SolverConfiguration) (systemStringList : list<String>) (formula : HyperQPTL<String>) = 
+    let tsList = 
+        systemStringList
+        |> List.map (fun x -> 
+            match FsOmegaLib.Conversion.AutomatonFromString.convertHoaStringToGNBA HQPTL.Util.DEBUG config.GetMainPath config.GetAutfiltPath Effort.LOW None x with 
+            | Success x -> x 
+            | Fail msg -> raise <| FrontendException $"Failure when obtaining GNBA for system: %s{msg}"
+            | Timeout -> raise <| FrontendException $"Timeout"
+        )
+     
+    tsList, formula
