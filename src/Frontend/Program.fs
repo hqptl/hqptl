@@ -20,6 +20,7 @@ module Frontend.Program
 open System
 open System.IO
 
+open FsOmegaLib.SAT
 open FsOmegaLib.GNBA
 open FsOmegaLib.Conversion
 
@@ -204,16 +205,16 @@ let main args =
                     | None -> 
                         //printfn "Could not compute a Lasso"
                         ()
-                    | Some lasso -> 
+                    | Some lassoMap -> 
                         // We can assume that each DNF in this lasso is SAT
 
-                        let printList (l : list<list<bool * (String * TraceVariable)>>) = 
+                        let printList (l : list<list<Literal<String>>>) = 
                             l 
                             |> List.map (fun a -> 
                                 a 
-                                |> List.map (fun (b, (a, pi)) -> 
-                                    let s = "\"" + a + "\"_" + pi
-                                    if b then s else "!" + s
+                                |> List.map (function 
+                                    | PL a -> "\"" + a + "\""
+                                    | NL a -> "! \"" + a + "\""
                                     )
                                 |> Util.combineStringsWithSeperator " & "
                                 |> fun s -> "(" + s + ")"
@@ -221,11 +222,14 @@ let main args =
                             |> Util.combineStringsWithSeperator " "
                             |> fun x -> "[" + x + "]"
 
-                        let prefixString = printList lasso.Prefix
-                        let loopString = printList lasso.Loop
-
-                        printfn $"%s{prefixString}"
-                        printfn $"%s{loopString}"
+                        lassoMap.Keys
+                        |> Seq.iter (fun pi -> 
+                            let lasso = lassoMap.[pi]
+                            printfn $""
+                            printfn $"%s{pi}"
+                            printfn $"Prefix: %s{printList lasso.Prefix}"
+                            printfn $"Loop: %s{printList lasso.Loop}"
+                            )
             with 
             | HQPTL.Util.TimeoutException -> 
                 printfn "TIMEOUT"

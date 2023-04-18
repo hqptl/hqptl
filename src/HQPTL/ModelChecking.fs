@@ -412,20 +412,44 @@ let modelCheck (config : SolverConfiguration) mcOptions (tsMap : Map<TraceVariab
 
                 f 
                 |> List.map (fun lit -> 
-                    let ap = 
+                    let ap, pi = 
                         match nba.APs.[Literal.getValue lit] with 
                         | PropAtom _ -> raise <| AnalysisException $"Encountered a quantified propositional AP in the lasso, should not happen!"
                         | TraceAtom (a, pi) -> a, pi
                     
-                    let isPos = match lit with PL _ -> true | NL _ -> false
-                    isPos, ap 
+                    pi, match lit with PL _ -> PL ap | NL _ -> NL ap
                     )
 
-            let modLasso = 
-                {
-                    Lasso.Prefix = lasso.Prefix |> List.map makeDNFExplict
-                    Loop = lasso.Loop |> List.map makeDNFExplict
-                }
+            let modPrefix = lasso.Prefix |> List.map makeDNFExplict 
+            let modLoop = lasso.Loop |> List.map makeDNFExplict 
+
+            let witnessPerTraceVariableMap = 
+                nonProjectedTraces 
+                |> Set.toList
+                |> List.map (fun pi -> 
+                    let prefix = 
+                        modPrefix 
+                        |> List.map (fun clause -> 
+                            clause
+                            |> List.filter (fun (pi', _) -> pi = pi')
+                            |> List.map snd
+                            )
+
+                    let loop = 
+                        modLoop 
+                        |> List.map (fun clause -> 
+                            clause
+                            |> List.filter (fun (pi', _) -> pi = pi')
+                            |> List.map snd
+                            )
+
+                    pi, 
+                    {
+                        Lasso.Prefix = prefix
+                        Loop = loop
+                    }
+                    )
+                |> Map.ofList
 
             // The automaton is non-empty
-            (if isNegated then false else true), (Some modLasso) 
+            (if isNegated then false else true), (Some witnessPerTraceVariableMap) 
